@@ -1,0 +1,7 @@
+<p *ngIf="!!label"><span *ngIf="required">*&nbsp;</span>{{ label }}</p>
+<label class="checkbox-inline custom-checkbox nowrap">
+  <input type="checkbox" class="form-control" *ngIf="!readonly" [formControl]="formControl">
+  <input type="checkbox" class="form-control" *ngIf="readonly" [formControl]="readonlyFormControl">
+  <span>{{ trueValueLabel }}</span>
+</label>
+<validate-message [control]="formControl"><ng-content></ng-content></validate-message>

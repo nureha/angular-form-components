@@ -1,0 +1,3 @@
+<label *ngIf="label"><span *ngIf="required">*&nbsp;</span>{{ label }}</label>
+<textarea [formControl]="formControl" class="form-control"></textarea>
+<validate-message [control]="formControl"><ng-content></ng-content></validate-message>

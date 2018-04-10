@@ -1,0 +1,11 @@
+<label *ngIf="label" [htmlFor]="id"><span [hidden]="!required">*&nbsp;</span>{{ label }}</label>
+<ng-container *ngIf="!readonly">
+  <select [id]="id" class="form-control" [formControl]="innerFormControl" [required]="required">
+    <option *ngIf="!required" [ngValue]="null"></option>
+    <option *ngFor="let item of data" [ngValue]="item.forSelectValue" [innerHtml]="item.forSelectName"></option>
+  </select>
+  <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
+</ng-container>
+<ng-container *ngIf="readonly">
+  <span class="form-control" readonly [innerHtml]="selected?.forSelectName"></span>
+</ng-container>

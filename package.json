@@ -1,0 +1,47 @@
+{
+  "name": "angular-form-components",
+  "private": true,
+  "version": "1.0.0-beta.1",
+  "description": "",
+  "main": "dist/out_tsc/index.js",
+  "scripts": {
+    "test": "ng test",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nureha/angular-form-components.git"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "author": "nureha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nureha/angular-form-components/issues"
+  },
+  "homepage": "https://github.com/nureha/angular-form-components#readme",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "select2": "^4.0.6-rc.1"
+  },
+  "devDependencies": {
+    "@angular/cli": "^1.7.4",
+    "@angular/common": "^5.2.9",
+    "@angular/compiler": "^5.2.9",
+    "@angular/compiler-cli": "^5.2.9",
+    "@angular/core": "^5.2.9",
+    "@angular/forms": "^5.2.9",
+    "@angular/platform-browser": "^5.2.9",
+    "@angular/platform-browser-dynamic": "^5.2.9",
+    "@types/jasmine": "^2.8.6",
+    "@types/node": "^7.0.60",
+    "jasmine": "^3.1.0",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.1",
+    "karma-jasmine-html-reporter": "^1.0.0",
+    "rxjs": "^5.5.8",
+    "zone.js": "^0.8.26"
+  }
+}

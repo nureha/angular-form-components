@@ -1,0 +1,8 @@
+<p *ngIf="!!label"><span [hidden]="!required">*&nbsp;</span>{{ label }}</p>
+<label htmlFor="{{ id }}_{{ item.forSelectValue }}" *ngFor="let item of data" class="radio-inline custom-radio nowrap">
+  <input id="{{ id }}_{{ item.forSelectValue }}" type="radio" class="form-control" name="{{ id }}"
+    [value]="item.forSelectValue" [formControl]="innerFormControl">
+  <span [innerHtml]="item.forSelectName"></span>
+</label>
+<br>
+<validate-message [control]="formControl"><ng-content></ng-content></validate-message>
