@@ -3,12 +3,7 @@
   "private": true,
   "version": "1.0.0-beta.1",
   "description": "",
-  "main": "src/index.ts",
-  "scripts": {
-    "test": "ng test",
-    "build": "ng build --prod",
-    "pkg": "ng-packagr -p ng-package.json"
-  },
+  "main": "bundles/angular-form-components.umd.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nureha/angular-form-components.git"
@@ -45,5 +40,12 @@
     "ng-packagr": "^2.4.2",
     "rxjs": "^5.5.8",
     "zone.js": "^0.8.26"
+  },
+  "module": "esm5/angular-form-components.js",
+  "es2015": "esm2015/angular-form-components.js",
+  "typings": "angular-form-components.d.ts",
+  "metadata": "angular-form-components.metadata.json",
+  "dependencies": {
+    "tslib": "^1.7.1"
   }
 }

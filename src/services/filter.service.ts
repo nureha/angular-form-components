@@ -1,10 +1,8 @@
-import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { merge } from 'rxjs/operators';
 
-@Injectable()
 export class FilterService {
     public get onChange() {
       return this._onChange;
