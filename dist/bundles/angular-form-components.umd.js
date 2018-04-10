@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('rxjs/Observable'), require('rxjs/Subject'), require('rxjs/operators'), require('rxjs/ReplaySubject'), require('rxjs/Subscription'), require('@angular/common'), require('components/single-checkbox/single-checkbox.component')) :
-	typeof define === 'function' && define.amd ? define('angular-form-components', ['exports', '@angular/core', '@angular/forms', 'rxjs/Observable', 'rxjs/Subject', 'rxjs/operators', 'rxjs/ReplaySubject', 'rxjs/Subscription', '@angular/common', 'components/single-checkbox/single-checkbox.component'], factory) :
-	(factory((global['angular-form-components'] = {}),global.ng.core,global.ng.forms,global.Rx,global.Rx,global.Rx.Observable.prototype,global.Rx,global.Rx,global.ng.common,global.singleCheckbox_component));
-}(this, (function (exports,core,forms,Observable,Subject,operators,ReplaySubject,Subscription,common,singleCheckbox_component) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('rxjs/Subject'), require('rxjs/operators'), require('rxjs/ReplaySubject'), require('rxjs/Subscription'), require('@angular/common')) :
+	typeof define === 'function' && define.amd ? define('angular-form-components', ['exports', '@angular/core', '@angular/forms', 'rxjs/Subject', 'rxjs/operators', 'rxjs/ReplaySubject', 'rxjs/Subscription', '@angular/common'], factory) :
+	(factory((global['angular-form-components'] = {}),global.ng.core,global.ng.forms,global.Rx,global.Rx.Observable.prototype,global.Rx,global.Rx,global.ng.common));
+}(this, (function (exports,core,forms,Subject,operators,ReplaySubject,Subscription,common) { 'use strict';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -416,14 +416,6 @@ var FilterService = /** @class */ (function () {
     };
     return FilterService;
 }());
-FilterService.decorators = [
-    { type: core.Injectable },
-];
-FilterService.ctorParameters = function () { return [
-    { type: Observable.Observable, },
-    null,
-    null,
-]; };
 var Selectable = /** @class */ (function () {
     function Selectable() {
     }
@@ -1069,6 +1061,64 @@ AfmRadioComponent.propDecorators = {
     "list": [{ type: core.Input },],
     "rejects": [{ type: core.Input },],
 };
+var AfmSingleCheckboxComponent = /** @class */ (function () {
+    function AfmSingleCheckboxComponent() {
+        this._readonly = false;
+        this.required = false;
+        this.subscription = new Subscription.Subscription();
+        this.readonlyFormControl = new forms.FormControl();
+    }
+    Object.defineProperty(AfmSingleCheckboxComponent.prototype, "readonly", {
+        get: function () {
+            return this._readonly;
+        },
+        set: function (flag) {
+            this._readonly = flag;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AfmSingleCheckboxComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.readonlyFormControl.disable();
+        this.trueValueLabel = this.trueValueLabel ? this.trueValueLabel : this.label;
+        var err = this.formControl.validator && this.formControl.validator(new forms.FormControl());
+        this.required = err && !!err['required'];
+        this.subscription.add(this.formControl.valueChanges.pipe(operators.filter(function (v) { return (!v && v !== false); })).subscribe(function (_) {
+            _this.onChangePropagate(false);
+        }));
+    };
+    AfmSingleCheckboxComponent.prototype.ngOnDestroy = function () {
+        this.subscription.unsubscribe();
+    };
+    AfmSingleCheckboxComponent.prototype.writeValue = function (v) {
+        this.readonlyFormControl.patchValue(v);
+    };
+    AfmSingleCheckboxComponent.prototype.registerOnChange = function (fn) {
+        this.onChangePropagate = fn;
+    };
+    AfmSingleCheckboxComponent.prototype.registerOnTouched = function (_) { };
+    return AfmSingleCheckboxComponent;
+}());
+AfmSingleCheckboxComponent.decorators = [
+    { type: core.Component, args: [{
+                selector: 'single-checkbox',
+                template: "<p *ngIf=\"!!label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</p>\n<label class=\"checkbox-inline custom-checkbox nowrap\">\n  <input type=\"checkbox\" class=\"form-control\" *ngIf=\"!readonly\" [formControl]=\"formControl\">\n  <input type=\"checkbox\" class=\"form-control\" *ngIf=\"readonly\" [formControl]=\"readonlyFormControl\">\n  <span>{{ trueValueLabel }}</span>\n</label>\n<validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n",
+                styles: [""],
+                providers: [{
+                        provide: forms.NG_VALUE_ACCESSOR,
+                        useExisting: core.forwardRef(function () { return AfmSingleCheckboxComponent; }),
+                        multi: true
+                    }]
+            },] },
+];
+AfmSingleCheckboxComponent.ctorParameters = function () { return []; };
+AfmSingleCheckboxComponent.propDecorators = {
+    "formControl": [{ type: core.Input },],
+    "label": [{ type: core.Input },],
+    "trueValueLabel": [{ type: core.Input },],
+    "readonly": [{ type: core.Input },],
+};
 var COMPONENTS = [
     AfmInputComponent,
     AfmNumberComponent,
@@ -1078,7 +1128,7 @@ var COMPONENTS = [
     AfmCheckboxComponent,
     AfmRadioComponent,
     AfmSelect2Component,
-    singleCheckbox_component.AfmSingleCheckboxComponent,
+    AfmSingleCheckboxComponent,
 ];
 var AngularFormComponentsModule = /** @class */ (function () {
     function AngularFormComponentsModule() {
@@ -1110,6 +1160,7 @@ exports.ɵf = AfmCheckboxComponent;
 exports.ɵg = AfmRadioComponent;
 exports.ɵh = AfmSelect2Component;
 exports.ɵe = AfmSelectComponent;
+exports.ɵi = AfmSingleCheckboxComponent;
 exports.ɵc = AfmTextareaComponent;
 exports.ɵd = AfmValidateMessageComponent;
 

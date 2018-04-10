@@ -1,12 +1,10 @@
 import { Component, Input, forwardRef, Output, EventEmitter, Renderer2, ElementRef, HostListener, Injectable, Injector, InjectionToken, ReflectiveInjector, Inject, ViewChild, NgModule } from '@angular/core';
 import { FormControl, NG_VALUE_ACCESSOR, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { merge, combineLatest, share, filter, delay } from 'rxjs/operators';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Subscription } from 'rxjs/Subscription';
 import { CommonModule } from '@angular/common';
-import { AfmSingleCheckboxComponent } from 'components/single-checkbox/single-checkbox.component';
 
 /**
  * @fileoverview added by tsickle
@@ -545,15 +543,6 @@ class FilterService {
         return this;
     }
 }
-FilterService.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-FilterService.ctorParameters = () => [
-    { type: Observable, },
-    null,
-    null,
-];
 
 /**
  * @fileoverview added by tsickle
@@ -1404,6 +1393,96 @@ AfmRadioComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+class AfmSingleCheckboxComponent {
+    constructor() {
+        this._readonly = false;
+        this.required = false;
+        this.subscription = new Subscription();
+        this.readonlyFormControl = new FormControl();
+    }
+    /**
+     * @param {?} flag
+     * @return {?}
+     */
+    set readonly(flag) {
+        this._readonly = flag;
+    }
+    /**
+     * @return {?}
+     */
+    get readonly() {
+        return this._readonly;
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.readonlyFormControl.disable();
+        this.trueValueLabel = this.trueValueLabel ? this.trueValueLabel : this.label;
+        const /** @type {?} */ err = this.formControl.validator && this.formControl.validator(new FormControl());
+        this.required = err && !!err['required'];
+        this.subscription.add(this.formControl.valueChanges.pipe(filter(v => (!v && v !== false))).subscribe(_ => {
+            this.onChangePropagate(false);
+        }));
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
+    /**
+     * @param {?} v
+     * @return {?}
+     */
+    writeValue(v) {
+        this.readonlyFormControl.patchValue(v);
+    }
+    /**
+     * @param {?} fn
+     * @return {?}
+     */
+    registerOnChange(fn) {
+        this.onChangePropagate = fn;
+    }
+    /**
+     * @param {?} _
+     * @return {?}
+     */
+    registerOnTouched(_) { }
+}
+AfmSingleCheckboxComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'single-checkbox',
+                template: `<p *ngIf="!!label"><span *ngIf="required">*&nbsp;</span>{{ label }}</p>
+<label class="checkbox-inline custom-checkbox nowrap">
+  <input type="checkbox" class="form-control" *ngIf="!readonly" [formControl]="formControl">
+  <input type="checkbox" class="form-control" *ngIf="readonly" [formControl]="readonlyFormControl">
+  <span>{{ trueValueLabel }}</span>
+</label>
+<validate-message [control]="formControl"><ng-content></ng-content></validate-message>
+`,
+                styles: [``],
+                providers: [{
+                        provide: NG_VALUE_ACCESSOR,
+                        useExisting: forwardRef(() => AfmSingleCheckboxComponent),
+                        multi: true
+                    }]
+            },] },
+];
+/** @nocollapse */
+AfmSingleCheckboxComponent.ctorParameters = () => [];
+AfmSingleCheckboxComponent.propDecorators = {
+    "formControl": [{ type: Input },],
+    "label": [{ type: Input },],
+    "trueValueLabel": [{ type: Input },],
+    "readonly": [{ type: Input },],
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
 const COMPONENTS = [
     AfmInputComponent,
     AfmNumberComponent,
@@ -1443,5 +1522,5 @@ AngularFormComponentsModule.decorators = [
  * Generated bundle index. Do not edit.
  */
 
-export { COMPONENTS, AngularFormComponentsModule, FilterService, Selectable, MULTI_IMPORT_SERVICES_MAP, SelectorServiceInjector, AfmInputComponent as ɵa, AfmNumberComponent as ɵb, AfmCheckboxComponent as ɵf, AfmRadioComponent as ɵg, AfmSelect2Component as ɵh, AfmSelectComponent as ɵe, AfmTextareaComponent as ɵc, AfmValidateMessageComponent as ɵd };
+export { COMPONENTS, AngularFormComponentsModule, FilterService, Selectable, MULTI_IMPORT_SERVICES_MAP, SelectorServiceInjector, AfmInputComponent as ɵa, AfmNumberComponent as ɵb, AfmCheckboxComponent as ɵf, AfmRadioComponent as ɵg, AfmSelect2Component as ɵh, AfmSelectComponent as ɵe, AfmSingleCheckboxComponent as ɵi, AfmTextareaComponent as ɵc, AfmValidateMessageComponent as ɵd };
 //# sourceMappingURL=angular-form-components.js.map

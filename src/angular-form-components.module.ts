@@ -6,7 +6,7 @@ import { AfmValidateMessageComponent } from './components/validate-message/valid
 import { AfmTextareaComponent } from './components/textarea/textarea.component';
 import { AfmNumberComponent } from './components/number/number.component';
 import { AfmSelectComponent, AfmCheckboxComponent, AfmRadioComponent, AfmSelect2Component } from './components/select';
-import { AfmSingleCheckboxComponent } from 'components/single-checkbox/single-checkbox.component';
+import { AfmSingleCheckboxComponent } from './components/single-checkbox/single-checkbox.component';
 
 export const COMPONENTS = [
   AfmInputComponent,
