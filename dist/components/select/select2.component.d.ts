@@ -1,8 +1,8 @@
 import { ElementRef, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SelectorServiceInjector, Selectable } from '../../services';
-import { AfmSelectBase } from './select-base.component';
-export declare class AfmSelect2Component extends AfmSelectBase implements OnInit, AfterViewInit, OnDestroy {
+import { AfcSelectBase } from './select-base.component';
+export declare class AfcSelect2Component extends AfcSelectBase implements OnInit, AfterViewInit, OnDestroy {
     formControl: FormControl;
     sourceName: string;
     label: string;

@@ -3,21 +3,38 @@ import { NG_VALUE_ACCESSOR, FormControl } from '@angular/forms';
 import { filter, combineLatest } from 'rxjs/operators';
 
 import { SelectorServiceInjector, Selectable } from '../../services';
-import { AfmSelectBase } from './select-base.component';
+import { AfcSelectBase } from './select-base.component';
 
 @Component({
-  selector: 'afm-select',
-  templateUrl: './select.component.html',
-  styleUrls: ['./select.component.css'],
+  selector: 'afc-select',
+  template: `
+    <label *ngIf="label" [htmlFor]="id"><span [hidden]="!required">*&nbsp;</span>{{ label }}</label>
+    <ng-container *ngIf="!readonly">
+      <select [id]="id" class="form-control" [formControl]="innerFormControl" [required]="required">
+        <option *ngIf="!required" [ngValue]="null"></option>
+        <option *ngFor="let item of data" [ngValue]="item.forSelectValue" [innerHtml]="item.forSelectName"></option>
+      </select>
+      <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
+    </ng-container>
+    <ng-container *ngIf="readonly">
+      <span class="form-control" readonly [innerHtml]="selected?.forSelectName"></span>
+    </ng-container>
+  `,
+  styles: [`
+    span.selected {
+      text-decoration: underline;
+      text-decoration-style: double;
+    }
+  `],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => AfmSelectComponent),
+    useExisting: forwardRef(() => AfcSelectComponent),
     multi: true
   },
     SelectorServiceInjector
   ]
 })
-export class AfmSelectComponent extends AfmSelectBase {
+export class AfcSelectComponent extends AfcSelectBase {
 
   @Input() formControl: FormControl;
   @Input() sourceName: string;

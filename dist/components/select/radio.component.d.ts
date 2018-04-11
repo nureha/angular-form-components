@@ -1,7 +1,7 @@
 import { FormControl } from '@angular/forms';
 import { SelectorServiceInjector } from '../../services';
-import { AfmSelectBase } from './select-base.component';
-export declare class AfmRadioComponent extends AfmSelectBase {
+import { AfcSelectBase } from './select-base.component';
+export declare class AfcRadioComponent extends AfcSelectBase {
     formControl: FormControl;
     sourceName: string;
     label: string;

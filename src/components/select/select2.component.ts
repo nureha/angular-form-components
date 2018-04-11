@@ -5,22 +5,32 @@ import { Subject } from 'rxjs/Subject';
 import { filter, combineLatest, delay } from 'rxjs/operators';
 
 import { SelectorServiceInjector, Selectable } from '../../services';
-import { AfmSelectBase } from './select-base.component';
+import { AfcSelectBase } from './select-base.component';
 declare const jQuery: any;
 
 @Component({
-  selector: 'afm-select2',
-  templateUrl: './select2.component.html',
-  styleUrls: ['./select2.component.css'],
+  selector: 'afc-select2',
+  template: `
+    <label><span [hidden]="!required">*&nbsp;</span>{{ label }}</label>
+    <ng-container *ngIf="!readonly">
+      <div>
+        <select #selector class="form-control"></select>
+        <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="readonly">
+      <span class="form-control" readonly [innerHtml]="selected?.forSelectName"></span>
+    </ng-container>
+  `,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => AfmSelect2Component),
+    useExisting: forwardRef(() => AfcSelect2Component),
     multi: true
   },
     SelectorServiceInjector
   ]
 })
-export class AfmSelect2Component extends AfmSelectBase implements OnInit, AfterViewInit, OnDestroy {
+export class AfcSelect2Component extends AfcSelectBase implements OnInit, AfterViewInit, OnDestroy {
 
   @Input() formControl: FormControl;
   @Input() sourceName: string;

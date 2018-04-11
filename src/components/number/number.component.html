@@ -1,6 +1,0 @@
-<label *ngIf="label"><span *ngIf="required">*&nbsp;</span>{{ label }}</label>
-<input class="form-control"
-  (blur)="onBlur()"
-  type="number" [formControl]="innerFormControl">
-<input class="form-control" (focus)="onFocus()" [readonly]="readonly">
-<validate-message [control]="formControl"><ng-content></ng-content></validate-message>

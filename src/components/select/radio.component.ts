@@ -2,21 +2,29 @@ import { Component, Input, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormControl } from '@angular/forms';
 
 import { SelectorServiceInjector, Selectable } from '../../services';
-import { AfmSelectBase } from './select-base.component';
+import { AfcSelectBase } from './select-base.component';
 
 @Component({
-  selector: 'afm-radio',
-  templateUrl: './radio.component.html',
-  styleUrls: ['./select.component.css'],
+  selector: 'afc-radio',
+  template: `
+    <p *ngIf="!!label"><span [hidden]="!required">*&nbsp;</span>{{ label }}</p>
+    <label htmlFor="{{ id }}_{{ item.forSelectValue }}" *ngFor="let item of data" class="radio-inline custom-radio nowrap">
+      <input id="{{ id }}_{{ item.forSelectValue }}" type="radio" class="form-control" name="{{ id }}"
+        [value]="item.forSelectValue" [formControl]="innerFormControl">
+      <span [innerHtml]="item.forSelectName"></span>
+    </label>
+    <br>
+    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
+  `,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => AfmRadioComponent),
+    useExisting: forwardRef(() => AfcRadioComponent),
     multi: true
   },
     SelectorServiceInjector
   ]
 })
-export class AfmRadioComponent extends AfmSelectBase {
+export class AfcRadioComponent extends AfcSelectBase {
 
   @Input() formControl: FormControl;
   @Input() sourceName: string;

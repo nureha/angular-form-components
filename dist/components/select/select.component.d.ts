@@ -1,7 +1,7 @@
 import { FormControl } from '@angular/forms';
 import { SelectorServiceInjector, Selectable } from '../../services';
-import { AfmSelectBase } from './select-base.component';
-export declare class AfmSelectComponent extends AfmSelectBase {
+import { AfcSelectBase } from './select-base.component';
+export declare class AfcSelectComponent extends AfcSelectBase {
     formControl: FormControl;
     sourceName: string;
     label: string;

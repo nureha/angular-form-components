@@ -2,8 +2,8 @@ import { OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FilterService } from '../../services';
 import { SelectorServiceInjector, Selectable } from '../../services';
-import { AfmSelectBase } from './select-base.component';
-export declare class AfmCheckboxComponent extends AfmSelectBase implements OnInit {
+import { AfcSelectBase } from './select-base.component';
+export declare class AfcCheckboxComponent extends AfcSelectBase implements OnInit {
     formControl: FormControl;
     sourceName: string;
     label: string;

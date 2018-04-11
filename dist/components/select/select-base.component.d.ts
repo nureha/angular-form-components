@@ -3,7 +3,7 @@ import { ControlValueAccessor, FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 import { SelectorServiceInjector, SelectorService, Selectable, SelectorItem } from '../../services';
-export declare class AfmSelectBase implements OnInit, OnChanges, OnDestroy, ControlValueAccessor {
+export declare class AfcSelectBase implements OnInit, OnChanges, OnDestroy, ControlValueAccessor {
     protected services: SelectorServiceInjector;
     protected _service: SelectorService;
     formControl: FormControl;

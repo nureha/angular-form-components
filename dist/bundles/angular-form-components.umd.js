@@ -56,12 +56,12 @@ function __spread() {
     return ar;
 }
 
-var AfmInputComponent = /** @class */ (function () {
-    function AfmInputComponent() {
+var AfcInputComponent = /** @class */ (function () {
+    function AfcInputComponent() {
         this.type = 'text';
         this._readonly = false;
     }
-    Object.defineProperty(AfmInputComponent.prototype, "readonly", {
+    Object.defineProperty(AfcInputComponent.prototype, "readonly", {
         get: function () {
             return this._readonly;
         },
@@ -71,79 +71,32 @@ var AfmInputComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    AfmInputComponent.prototype.ngOnInit = function () {
+    AfcInputComponent.prototype.ngOnInit = function () {
         var err = this.formControl.validator && this.formControl.validator(new forms.FormControl());
         this.required = !!err && !!err['required'];
     };
-    AfmInputComponent.prototype.writeValue = function (_) { };
-    AfmInputComponent.prototype.registerOnChange = function (_) { };
-    AfmInputComponent.prototype.registerOnTouched = function (_) { };
-    return AfmInputComponent;
+    AfcInputComponent.prototype.writeValue = function (_) { };
+    AfcInputComponent.prototype.registerOnChange = function (_) { };
+    AfcInputComponent.prototype.registerOnTouched = function (_) { };
+    return AfcInputComponent;
 }());
-AfmInputComponent.decorators = [
+AfcInputComponent.decorators = [
     { type: core.Component, args: [{
-                selector: 'afm-input',
-                template: "<label *ngIf=\"label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</label>\n<input class=\"form-control\"\n  [type]=\"type\" [formControl]=\"formControl\" [readonly]=\"readonly\">\n<validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n",
-                styles: [""],
+                selector: 'afc-input',
+                template: "\n    <label *ngIf=\"label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</label>\n    <input class=\"form-control\"\n      [type]=\"type\" [formControl]=\"formControl\" [readonly]=\"readonly\">\n    <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n  ",
                 providers: [{
                         provide: forms.NG_VALUE_ACCESSOR,
-                        useExisting: core.forwardRef(function () { return AfmInputComponent; }),
+                        useExisting: core.forwardRef(function () { return AfcInputComponent; }),
                         multi: true
                     }]
             },] },
 ];
-AfmInputComponent.ctorParameters = function () { return []; };
-AfmInputComponent.propDecorators = {
+AfcInputComponent.ctorParameters = function () { return []; };
+AfcInputComponent.propDecorators = {
     "formControl": [{ type: core.Input },],
     "label": [{ type: core.Input },],
     "type": [{ type: core.Input },],
     "readonly": [{ type: core.Input },],
-};
-var AfmValidateMessageComponent = /** @class */ (function () {
-    function AfmValidateMessageComponent() {
-    }
-    AfmValidateMessageComponent.prototype.ngOnInit = function () { };
-    return AfmValidateMessageComponent;
-}());
-AfmValidateMessageComponent.decorators = [
-    { type: core.Component, args: [{
-                selector: 'validate-message',
-                template: "<span [hidden]=\"!control.touched || control.valid\"><ng-content></ng-content></span>\n",
-                styles: ["span{position:absolute;color:#fff;top:-15px;right:-10px;padding:7px;background-color:#bd362f;border-radius:7px}span:before{content:\"\";position:absolute;top:100%;left:50%;margin-left:-7px;border:7px solid transparent;border-top:7px solid #bd362f}"]
-            },] },
-];
-AfmValidateMessageComponent.ctorParameters = function () { return []; };
-AfmValidateMessageComponent.propDecorators = {
-    "control": [{ type: core.Input },],
-};
-var AfmTextareaComponent = /** @class */ (function () {
-    function AfmTextareaComponent() {
-    }
-    AfmTextareaComponent.prototype.ngOnInit = function () {
-        var err = this.formControl.validator && this.formControl.validator(new forms.FormControl());
-        this.required = err && !!err['required'];
-    };
-    AfmTextareaComponent.prototype.writeValue = function (_) { };
-    AfmTextareaComponent.prototype.registerOnChange = function (_) { };
-    AfmTextareaComponent.prototype.registerOnTouched = function (_) { };
-    return AfmTextareaComponent;
-}());
-AfmTextareaComponent.decorators = [
-    { type: core.Component, args: [{
-                selector: 'afm-textarea',
-                template: "<label *ngIf=\"label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</label>\n<textarea [formControl]=\"formControl\" class=\"form-control\"></textarea>\n<validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n",
-                styles: [""],
-                providers: [{
-                        provide: forms.NG_VALUE_ACCESSOR,
-                        useExisting: core.forwardRef(function () { return AfmTextareaComponent; }),
-                        multi: true
-                    }]
-            },] },
-];
-AfmTextareaComponent.ctorParameters = function () { return []; };
-AfmTextareaComponent.propDecorators = {
-    "formControl": [{ type: core.Input },],
-    "label": [{ type: core.Input },],
 };
 function moveDigit(decimal, moves) {
     var nums = (decimal || 0).toString().split('.');
@@ -200,8 +153,8 @@ function numberFormat(num, underPoint) {
             .reverse().join('');
     }).join('.');
 }
-var AfmNumberComponent = /** @class */ (function () {
-    function AfmNumberComponent(renderer, elm) {
+var AfcNumberComponent = /** @class */ (function () {
+    function AfcNumberComponent(renderer, elm) {
         this.renderer = renderer;
         this.elm = elm;
         this.type = 'number';
@@ -211,7 +164,7 @@ var AfmNumberComponent = /** @class */ (function () {
         this._readonly = false;
         this.onChangePropagate = function () { };
     }
-    Object.defineProperty(AfmNumberComponent.prototype, "readonly", {
+    Object.defineProperty(AfcNumberComponent.prototype, "readonly", {
         get: function () {
             return this._readonly;
         },
@@ -222,7 +175,7 @@ var AfmNumberComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(AfmNumberComponent.prototype, "formatedValue", {
+    Object.defineProperty(AfcNumberComponent.prototype, "formatedValue", {
         get: function () {
             if (this.type === 'percent') {
                 return numberFormat(this.innerFormControl.value) + '%';
@@ -232,7 +185,7 @@ var AfmNumberComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    AfmNumberComponent.prototype.onKeyDown = function (key) {
+    AfcNumberComponent.prototype.onKeyDown = function (key) {
         switch (key) {
             case 't':
                 this.innerFormControl.patchValue(moveDigit(this.innerFormControl.value, 3));
@@ -242,7 +195,7 @@ var AfmNumberComponent = /** @class */ (function () {
                 break;
         }
     };
-    AfmNumberComponent.prototype.ngOnInit = function () {
+    AfcNumberComponent.prototype.ngOnInit = function () {
         var _this = this;
         var err = this.formControl.validator && this.formControl.validator(new forms.FormControl());
         this.required = !!err && !!err['required'];
@@ -259,10 +212,10 @@ var AfmNumberComponent = /** @class */ (function () {
             }
         });
     };
-    AfmNumberComponent.prototype.ngAfterViewInit = function () {
+    AfcNumberComponent.prototype.ngAfterViewInit = function () {
         this.onBlur(true);
     };
-    AfmNumberComponent.prototype.onBlur = function (noEmit) {
+    AfcNumberComponent.prototype.onBlur = function (noEmit) {
         if (noEmit === void 0) { noEmit = false; }
         if (this.realInput) {
             if (this.innerFormControl.value === '') {
@@ -276,7 +229,7 @@ var AfmNumberComponent = /** @class */ (function () {
             this.blur.emit();
         }
     };
-    AfmNumberComponent.prototype.onFocus = function () {
+    AfcNumberComponent.prototype.onFocus = function () {
         if (!this.readonly) {
             this.renderer.setStyle(this.dummyInput, 'display', 'none');
             this.renderer.setStyle(this.realInput, 'display', 'inherit');
@@ -288,36 +241,35 @@ var AfmNumberComponent = /** @class */ (function () {
             }
         }
     };
-    AfmNumberComponent.prototype.writeValue = function (value) {
+    AfcNumberComponent.prototype.writeValue = function (value) {
         if (this.type === 'percent') {
             value = moveDigit(value, this.afterPointNum);
         }
         this.innerFormControl.patchValue(value);
         this.renderer.setProperty(this.dummyInput, 'value', this.formatedValue);
     };
-    AfmNumberComponent.prototype.registerOnChange = function (fn) {
+    AfcNumberComponent.prototype.registerOnChange = function (fn) {
         this.onChangePropagate = fn;
     };
-    AfmNumberComponent.prototype.registerOnTouched = function (_) { };
-    return AfmNumberComponent;
+    AfcNumberComponent.prototype.registerOnTouched = function (_) { };
+    return AfcNumberComponent;
 }());
-AfmNumberComponent.decorators = [
+AfcNumberComponent.decorators = [
     { type: core.Component, args: [{
-                selector: 'afm-number',
-                template: "<label *ngIf=\"label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</label>\n<input class=\"form-control\"\n  (blur)=\"onBlur()\"\n  type=\"number\" [formControl]=\"innerFormControl\">\n<input class=\"form-control\" (focus)=\"onFocus()\" [readonly]=\"readonly\">\n<validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n",
-                styles: [""],
+                selector: 'afc-number',
+                template: "\n    <label *ngIf=\"label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</label>\n    <input class=\"form-control\"\n      (blur)=\"onBlur()\"\n      type=\"number\" [formControl]=\"innerFormControl\">\n    <input class=\"form-control\" (focus)=\"onFocus()\" [readonly]=\"readonly\">\n    <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n  ",
                 providers: [{
                         provide: forms.NG_VALUE_ACCESSOR,
-                        useExisting: core.forwardRef(function () { return AfmNumberComponent; }),
+                        useExisting: core.forwardRef(function () { return AfcNumberComponent; }),
                         multi: true
                     }]
             },] },
 ];
-AfmNumberComponent.ctorParameters = function () { return [
+AfcNumberComponent.ctorParameters = function () { return [
     { type: core.Renderer2, },
     { type: core.ElementRef, },
 ]; };
-AfmNumberComponent.propDecorators = {
+AfcNumberComponent.propDecorators = {
     "formControl": [{ type: core.Input },],
     "label": [{ type: core.Input },],
     "type": [{ type: core.Input },],
@@ -525,8 +477,8 @@ var ArrayService = /** @class */ (function () {
     return ArrayService;
 }());
 var id = 0;
-var AfmSelectBase = /** @class */ (function () {
-    function AfmSelectBase(services) {
+var AfcSelectBase = /** @class */ (function () {
+    function AfcSelectBase(services) {
         var _this = this;
         this.services = services;
         this.list = [];
@@ -561,14 +513,14 @@ var AfmSelectBase = /** @class */ (function () {
             _this.value = v[1];
         }));
     }
-    Object.defineProperty(AfmSelectBase.prototype, "value", {
+    Object.defineProperty(AfcSelectBase.prototype, "value", {
         set: function (value) {
             this.onChangePropagate(value);
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(AfmSelectBase.prototype, "_required", {
+    Object.defineProperty(AfcSelectBase.prototype, "_required", {
         get: function () {
             var err = this.formControl.validator && this.formControl.validator(new forms.FormControl());
             this.required = !!err && !!err['required'];
@@ -583,9 +535,9 @@ var AfmSelectBase = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    AfmSelectBase.prototype.ngOnInit = function () {
+    AfcSelectBase.prototype.ngOnInit = function () {
         var _this = this;
-        this.id = '_AfmSelect_' + id.toString();
+        this.id = '_AfcSelect_' + id.toString();
         id++;
         this.required = this._required;
         this.subscriptions.add(this.observer().subscribe(function (d) {
@@ -620,7 +572,7 @@ var AfmSelectBase = /** @class */ (function () {
         this.query();
         this.initialized$.next(true);
     };
-    AfmSelectBase.prototype.ngOnChanges = function (changes) {
+    AfcSelectBase.prototype.ngOnChanges = function (changes) {
         if (changes['sourceName'] && changes['sourceName'].currentValue !== changes['sourceName'].previousValue ||
             changes['list'] && changes['list'].currentValue.length !== changes['list'].previousValue.length ||
             changes['rejects'] && changes['rejects'].currentValue.length !== changes['rejects'].previousValue.length) {
@@ -629,10 +581,10 @@ var AfmSelectBase = /** @class */ (function () {
             }
         }
     };
-    AfmSelectBase.prototype.ngOnDestroy = function () {
+    AfcSelectBase.prototype.ngOnDestroy = function () {
         this.subscriptions.unsubscribe();
     };
-    AfmSelectBase.prototype.query = function () {
+    AfcSelectBase.prototype.query = function () {
         this.dataPrepared$.next(false);
         var parsed = this._parse(this.sourceName);
         if ((parsed.name === 'list' || parsed.name === 'range') && this.list) {
@@ -642,13 +594,13 @@ var AfmSelectBase = /** @class */ (function () {
             this._service.query(parsed.query);
         }
     };
-    AfmSelectBase.prototype.existsInSelector = function (val) {
+    AfcSelectBase.prototype.existsInSelector = function (val) {
         if (!val && val !== 0) {
             return false;
         }
         return this.data.some(function (item) { return item.forSelectValue === val; });
     };
-    AfmSelectBase.prototype.observer = function () {
+    AfcSelectBase.prototype.observer = function () {
         if (!this._service) {
             var parsed = this._parse(this.sourceName);
             if (parsed.name === 'list') {
@@ -683,7 +635,7 @@ var AfmSelectBase = /** @class */ (function () {
         }
         return this._service.list();
     };
-    AfmSelectBase.prototype._parse = function (sourceName) {
+    AfcSelectBase.prototype._parse = function (sourceName) {
         var exploded = sourceName.split(':');
         var query = {};
         if (exploded[1]) {
@@ -705,12 +657,12 @@ var AfmSelectBase = /** @class */ (function () {
             query: query
         };
     };
-    AfmSelectBase.prototype.validateInnerFormValue = function () {
+    AfcSelectBase.prototype.validateInnerFormValue = function () {
         return !(this._required && !this.innerFormControl.value && this.innerFormControl.value !== 0 ||
             !this.existsInSelector(this.innerFormControl.value) &&
                 (!!this.innerFormControl.value || this.innerFormControl.value === 0));
     };
-    AfmSelectBase.prototype.writeValue = function (value) {
+    AfcSelectBase.prototype.writeValue = function (value) {
         if (!this.isEffectiveValue(value) && this._required) {
             if (this.isEffectiveValue(this.defaultValue)) {
                 this.writeValue$.next(this.defaultValue.forSelectValue);
@@ -722,193 +674,19 @@ var AfmSelectBase = /** @class */ (function () {
         }
         this.writeValue$.next(value);
     };
-    AfmSelectBase.prototype.registerOnChange = function (fn) {
+    AfcSelectBase.prototype.registerOnChange = function (fn) {
         this.onChangePropagate = fn;
         this.onChangeEventPrepared$.next(true);
     };
-    AfmSelectBase.prototype.registerOnTouched = function (_) { };
-    AfmSelectBase.prototype.isEffectiveValue = function (value) {
+    AfcSelectBase.prototype.registerOnTouched = function (_) { };
+    AfcSelectBase.prototype.isEffectiveValue = function (value) {
         return !!value || value === 0;
     };
-    return AfmSelectBase;
+    return AfcSelectBase;
 }());
-var AfmSelectComponent = /** @class */ (function (_super) {
-    __extends(AfmSelectComponent, _super);
-    function AfmSelectComponent(services) {
-        var _this = _super.call(this, services) || this;
-        _this.valueType = 'number';
-        _this.list = [];
-        _this.rejects = [];
-        _this.selected = null;
-        _this._readonly = false;
-        _this.dataPrepared$.pipe(operators.filter(function (v) { return !!v; }), operators.combineLatest(_this.innerFormControl.valueChanges)).subscribe(function (v) {
-            _this.selected = _this.data.find(function (d) { return d.forSelectValue === v[1]; });
-        });
-        return _this;
-    }
-    Object.defineProperty(AfmSelectComponent.prototype, "readonly", {
-        get: function () {
-            return this._readonly;
-        },
-        set: function (flag) {
-            this._readonly = flag;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return AfmSelectComponent;
-}(AfmSelectBase));
-AfmSelectComponent.decorators = [
-    { type: core.Component, args: [{
-                selector: 'afm-select',
-                template: "<label *ngIf=\"label\" [htmlFor]=\"id\"><span [hidden]=\"!required\">*&nbsp;</span>{{ label }}</label>\n<ng-container *ngIf=\"!readonly\">\n  <select [id]=\"id\" class=\"form-control\" [formControl]=\"innerFormControl\" [required]=\"required\">\n    <option *ngIf=\"!required\" [ngValue]=\"null\"></option>\n    <option *ngFor=\"let item of data\" [ngValue]=\"item.forSelectValue\" [innerHtml]=\"item.forSelectName\"></option>\n  </select>\n  <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n</ng-container>\n<ng-container *ngIf=\"readonly\">\n  <span class=\"form-control\" readonly [innerHtml]=\"selected?.forSelectName\"></span>\n</ng-container>\n",
-                styles: ["label.margin-bottom{margin-bottom:20px}span.selected{text-decoration:underline;-webkit-text-decoration-style:double;text-decoration-style:double}p.fit{margin-bottom:0}"],
-                providers: [{
-                        provide: forms.NG_VALUE_ACCESSOR,
-                        useExisting: core.forwardRef(function () { return AfmSelectComponent; }),
-                        multi: true
-                    },
-                    SelectorServiceInjector
-                ]
-            },] },
-];
-AfmSelectComponent.ctorParameters = function () { return [
-    { type: SelectorServiceInjector, },
-]; };
-AfmSelectComponent.propDecorators = {
-    "formControl": [{ type: core.Input },],
-    "sourceName": [{ type: core.Input },],
-    "label": [{ type: core.Input },],
-    "valueType": [{ type: core.Input },],
-    "list": [{ type: core.Input },],
-    "rejects": [{ type: core.Input },],
-    "readonly": [{ type: core.Input },],
-};
-var AfmSelect2Component = /** @class */ (function (_super) {
-    __extends(AfmSelect2Component, _super);
-    function AfmSelect2Component(service) {
-        var _this = _super.call(this, service) || this;
-        _this.valueType = 'number';
-        _this.rejects = [];
-        _this.placeholder = '';
-        _this._readonly = false;
-        _this.selected = null;
-        _this._data = [];
-        _this.valueTrigger$ = new Subject.Subject();
-        _this.preparedElement$ = new Subject.Subject();
-        _this.mySubscriptions = new Subscription.Subscription();
-        _this.onChangePropagate = function () { };
-        _this.mySubscriptions.add(_this.dataPrepared$.pipe(operators.combineLatest(_this.preparedElement$), operators.filter(function (v) { return !!v[0] && !!v[1]; }), operators.combineLatest(_this.valueTrigger$), operators.delay(0)).subscribe(function (v) {
-            if (_this.element) {
-                _this.element.val(v[1]).trigger('change').trigger('select2:select');
-            }
-            _this.selected = _this._data.find(function (d) { return d.forSelectValue === v[1]; });
-        }));
-        return _this;
-    }
-    Object.defineProperty(AfmSelect2Component.prototype, "readonly", {
-        get: function () {
-            return this._readonly;
-        },
-        set: function (flag) {
-            this._readonly = flag;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(AfmSelect2Component.prototype, "data", {
-        get: function () {
-            return this._data;
-        },
-        set: function (data) {
-            this._data = data;
-            this.renderSelect2();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    AfmSelect2Component.prototype.ngAfterViewInit = function () {
-        var _this = this;
-        if (this.selector) {
-            this.element = jQuery(this.selector.nativeElement);
-            this.renderSelect2();
-            this.element.on('select2:select', function () {
-                var val = _this.selector.nativeElement.value;
-                if (/^[0-9]+$/.test(val)) {
-                    val = parseInt(val, 10);
-                }
-                if (_this._value !== val) {
-                    if (_this.valueType === 'object') {
-                        val = _this.data.find(function (l) { return l.forSelectValue === val; });
-                    }
-                    _this._value = val;
-                    _this.onChangePropagate(val);
-                }
-            });
-        }
-        this.preparedElement$.next(true);
-        this.mySubscriptions.add(this.innerFormControl.valueChanges.subscribe(function (v) {
-            _this.valueTrigger$.next(v);
-        }));
-    };
-    AfmSelect2Component.prototype.ngOnDestroy = function () {
-        _super.prototype.ngOnDestroy.call(this);
-        this.mySubscriptions.unsubscribe();
-        if (this.element) {
-            this.element.off('select2:select');
-        }
-    };
-    AfmSelect2Component.prototype.renderSelect2 = function () {
-        if (!this.element) {
-            return;
-        }
-        if (this.element.hasClass('select2-hidden-accessible') === true) {
-            this.element.select2('destroy');
-            this.element.html('');
-        }
-        this.element.select2({
-            data: this._data.map(function (d) {
-                return { id: d.forSelectValue, text: d.forSelectName };
-            }),
-            theme: 'bootstrap',
-            placeholder: this.placeholder,
-            allowClear: !this._required
-        });
-        this.valueTrigger$.next(this.formControl.value);
-    };
-    return AfmSelect2Component;
-}(AfmSelectBase));
-AfmSelect2Component.decorators = [
-    { type: core.Component, args: [{
-                selector: 'afm-select2',
-                template: "<label><span [hidden]=\"!required\">*&nbsp;</span>{{ label }}</label>\n<ng-container *ngIf=\"!readonly\">\n  <div>\n    <select #selector class=\"form-control\"></select>\n    <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n  </div>\n</ng-container>\n<ng-container *ngIf=\"readonly\">\n  <span class=\"form-control\" readonly [innerHtml]=\"selected?.forSelectName\"></span>\n</ng-container>\n",
-                styles: [""],
-                providers: [{
-                        provide: forms.NG_VALUE_ACCESSOR,
-                        useExisting: core.forwardRef(function () { return AfmSelect2Component; }),
-                        multi: true
-                    },
-                    SelectorServiceInjector
-                ]
-            },] },
-];
-AfmSelect2Component.ctorParameters = function () { return [
-    { type: SelectorServiceInjector, },
-]; };
-AfmSelect2Component.propDecorators = {
-    "formControl": [{ type: core.Input },],
-    "sourceName": [{ type: core.Input },],
-    "label": [{ type: core.Input },],
-    "valueType": [{ type: core.Input },],
-    "list": [{ type: core.Input },],
-    "rejects": [{ type: core.Input },],
-    "placeholder": [{ type: core.Input },],
-    "readonly": [{ type: core.Input },],
-    "selector": [{ type: core.ViewChild, args: ['selector',] },],
-};
-var AfmCheckboxComponent = /** @class */ (function (_super) {
-    __extends(AfmCheckboxComponent, _super);
-    function AfmCheckboxComponent(services) {
+var AfcCheckboxComponent = /** @class */ (function (_super) {
+    __extends(AfcCheckboxComponent, _super);
+    function AfcCheckboxComponent(services) {
         var _this = _super.call(this, services) || this;
         _this.valueType = 'number';
         _this.list = [];
@@ -920,7 +698,7 @@ var AfmCheckboxComponent = /** @class */ (function (_super) {
         _this.dataPrepared$.subscribe(function (v) { return _this._detaPrepared = !!v; });
         return _this;
     }
-    Object.defineProperty(AfmCheckboxComponent.prototype, "value", {
+    Object.defineProperty(AfcCheckboxComponent.prototype, "value", {
         get: function () {
             return this._value instanceof Array ? this._value : [this._value];
         },
@@ -933,7 +711,7 @@ var AfmCheckboxComponent = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    AfmCheckboxComponent.prototype.ngOnInit = function () {
+    AfcCheckboxComponent.prototype.ngOnInit = function () {
         var _this = this;
         _super.prototype.ngOnInit.call(this);
         if (this.filter) {
@@ -960,7 +738,7 @@ var AfmCheckboxComponent = /** @class */ (function (_super) {
             this.dataPrepared$.next(true);
         }
     };
-    AfmCheckboxComponent.prototype.onChange = function ($event, val) {
+    AfcCheckboxComponent.prototype.onChange = function ($event, val) {
         if ($event.target.checked) {
             if (this.valueType === 'object') {
                 val = this.data.find(function (l) { return l.forSelectValue === val; });
@@ -978,45 +756,45 @@ var AfmCheckboxComponent = /** @class */ (function (_super) {
             }
         }
     };
-    AfmCheckboxComponent.prototype.allCheck = function () {
+    AfcCheckboxComponent.prototype.allCheck = function () {
         var _this = this;
         this.value = __spread(this._value, this.filteredData.filter(function (d) { return _this._value.indexOf(d.forSelectValue) === -1; }).map(function (d) { return d.forSelectValue; }));
     };
-    AfmCheckboxComponent.prototype.allClear = function () {
+    AfcCheckboxComponent.prototype.allClear = function () {
         var filteredDataArray = this.filteredData.map(function (d) { return d.forSelectValue; });
         this.value = this._value.filter(function (v) { return filteredDataArray.indexOf(v) === -1; });
     };
-    AfmCheckboxComponent.prototype.existsInSelector = function (val) {
+    AfcCheckboxComponent.prototype.existsInSelector = function (val) {
         var _this = this;
         var _val = (!val || val instanceof Array) ? val : [val];
         return !_val || !_val.length || _val.reduce(function (prev, curr) {
             return prev || _this.data.some(function (item) { return item.forSelectValue === curr; });
         }, false);
     };
-    AfmCheckboxComponent.prototype.writeValue = function (val) {
+    AfcCheckboxComponent.prototype.writeValue = function (val) {
         this._value = val;
         this.innerFormControl.patchValue(val);
     };
-    return AfmCheckboxComponent;
-}(AfmSelectBase));
-AfmCheckboxComponent.decorators = [
+    return AfcCheckboxComponent;
+}(AfcSelectBase));
+AfcCheckboxComponent.decorators = [
     { type: core.Component, args: [{
-                selector: 'afm-checkbox',
-                template: "<p>{{ label }}</p>\n<div *ngIf=\"!!filter\">\n  <div class=\"form-group col-md-12\">\n    <div class=\"col-md-2\">\n      <p class=\"fit\">\u8868\u793A\u4E2D\u306E\u9078\u629E\u80A2\u3059\u3079\u3066\u3092</p>\n      <button type=\"button\" class=\"btn btn-info btn-sm\" (click)=\"allCheck()\">\u9078\u629E</button>\n      <button type=\"button\" class=\"btn btn-warning btn-sm\" (click)=\"allClear()\">\u30AF\u30EA\u30A2</button>\n    </div>\n  </div>\n</div>\n<label class=\"checkbox-inline hidden\"></label>\n<label htmlFor=\"{{ id }}_{{ item.forSelectValue }}\" *ngFor=\"let item of filteredData\"\n    class=\"checkbox-inline custom-checkbox nowrap margin-bottom\">\n  <input id=\"{{ id }}_{{ item.forSelectValue }}\" type=\"checkbox\" class=\"form-control\"\n    (change)=\"onChange($event, item.forSelectValue)\" [checked]=\"value.indexOf(item.forSelectValue) !== -1\">\n  <span [ngClass]=\"{'selected': value.indexOf(item.forSelectValue) !== -1}\"\n    [style.width]=\"width\" [innerHtml]=\"item.forSelectName\"></span>\n</label>\n<br>\n<validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n",
-                styles: ["label.margin-bottom{margin-bottom:20px}span.selected{text-decoration:underline;-webkit-text-decoration-style:double;text-decoration-style:double}p.fit{margin-bottom:0}"],
+                selector: 'afc-checkbox',
+                template: "\n    <p>{{ label }}</p>\n    <div *ngIf=\"!!filter\">\n      <div class=\"form-group col-md-12\">\n        <div class=\"col-md-2\">\n          <p class=\"fit\">\u8868\u793A\u4E2D\u306E\u9078\u629E\u80A2\u3059\u3079\u3066\u3092</p>\n          <button type=\"button\" class=\"btn btn-info btn-sm\" (click)=\"allCheck()\">\u9078\u629E</button>\n          <button type=\"button\" class=\"btn btn-warning btn-sm\" (click)=\"allClear()\">\u30AF\u30EA\u30A2</button>\n        </div>\n      </div>\n    </div>\n    <label class=\"checkbox-inline hidden\"></label>\n    <label htmlFor=\"{{ id }}_{{ item.forSelectValue }}\" *ngFor=\"let item of filteredData\"\n        class=\"checkbox-inline custom-checkbox nowrap margin-bottom\">\n      <input id=\"{{ id }}_{{ item.forSelectValue }}\" type=\"checkbox\" class=\"form-control\"\n        (change)=\"onChange($event, item.forSelectValue)\" [checked]=\"value.indexOf(item.forSelectValue) !== -1\">\n      <span [ngClass]=\"{'selected': value.indexOf(item.forSelectValue) !== -1}\"\n        [style.width]=\"width\" [innerHtml]=\"item.forSelectName\"></span>\n    </label>\n    <br>\n    <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n  ",
+                styles: ["\n    span.selected {\n      text-decoration: underline;\n      text-decoration-style: double;\n    }\n  ", "\n    label.margin-bottom {\n      margin-bottom: 20px;\n    }\n  ", "\n    p.fit {\n      margin-bottom: 0;\n    }\n  "],
                 providers: [{
                         provide: forms.NG_VALUE_ACCESSOR,
-                        useExisting: core.forwardRef(function () { return AfmCheckboxComponent; }),
+                        useExisting: core.forwardRef(function () { return AfcCheckboxComponent; }),
                         multi: true
                     },
                     SelectorServiceInjector
                 ]
             },] },
 ];
-AfmCheckboxComponent.ctorParameters = function () { return [
+AfcCheckboxComponent.ctorParameters = function () { return [
     { type: SelectorServiceInjector, },
 ]; };
-AfmCheckboxComponent.propDecorators = {
+AfcCheckboxComponent.propDecorators = {
     "formControl": [{ type: core.Input },],
     "sourceName": [{ type: core.Input },],
     "label": [{ type: core.Input },],
@@ -1025,35 +803,34 @@ AfmCheckboxComponent.propDecorators = {
     "rejects": [{ type: core.Input },],
     "filter": [{ type: core.Input },],
 };
-var AfmRadioComponent = /** @class */ (function (_super) {
-    __extends(AfmRadioComponent, _super);
-    function AfmRadioComponent(services) {
+var AfcRadioComponent = /** @class */ (function (_super) {
+    __extends(AfcRadioComponent, _super);
+    function AfcRadioComponent(services) {
         var _this = _super.call(this, services) || this;
         _this.valueType = 'number';
         _this.list = [];
         _this.rejects = [];
         return _this;
     }
-    return AfmRadioComponent;
-}(AfmSelectBase));
-AfmRadioComponent.decorators = [
+    return AfcRadioComponent;
+}(AfcSelectBase));
+AfcRadioComponent.decorators = [
     { type: core.Component, args: [{
-                selector: 'afm-radio',
-                template: "<p *ngIf=\"!!label\"><span [hidden]=\"!required\">*&nbsp;</span>{{ label }}</p>\n<label htmlFor=\"{{ id }}_{{ item.forSelectValue }}\" *ngFor=\"let item of data\" class=\"radio-inline custom-radio nowrap\">\n  <input id=\"{{ id }}_{{ item.forSelectValue }}\" type=\"radio\" class=\"form-control\" name=\"{{ id }}\"\n    [value]=\"item.forSelectValue\" [formControl]=\"innerFormControl\">\n  <span [innerHtml]=\"item.forSelectName\"></span>\n</label>\n<br>\n<validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n",
-                styles: ["label.margin-bottom{margin-bottom:20px}span.selected{text-decoration:underline;-webkit-text-decoration-style:double;text-decoration-style:double}p.fit{margin-bottom:0}"],
+                selector: 'afc-radio',
+                template: "\n    <p *ngIf=\"!!label\"><span [hidden]=\"!required\">*&nbsp;</span>{{ label }}</p>\n    <label htmlFor=\"{{ id }}_{{ item.forSelectValue }}\" *ngFor=\"let item of data\" class=\"radio-inline custom-radio nowrap\">\n      <input id=\"{{ id }}_{{ item.forSelectValue }}\" type=\"radio\" class=\"form-control\" name=\"{{ id }}\"\n        [value]=\"item.forSelectValue\" [formControl]=\"innerFormControl\">\n      <span [innerHtml]=\"item.forSelectName\"></span>\n    </label>\n    <br>\n    <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n  ",
                 providers: [{
                         provide: forms.NG_VALUE_ACCESSOR,
-                        useExisting: core.forwardRef(function () { return AfmRadioComponent; }),
+                        useExisting: core.forwardRef(function () { return AfcRadioComponent; }),
                         multi: true
                     },
                     SelectorServiceInjector
                 ]
             },] },
 ];
-AfmRadioComponent.ctorParameters = function () { return [
+AfcRadioComponent.ctorParameters = function () { return [
     { type: SelectorServiceInjector, },
 ]; };
-AfmRadioComponent.propDecorators = {
+AfcRadioComponent.propDecorators = {
     "formControl": [{ type: core.Input },],
     "sourceName": [{ type: core.Input },],
     "label": [{ type: core.Input },],
@@ -1061,14 +838,21 @@ AfmRadioComponent.propDecorators = {
     "list": [{ type: core.Input },],
     "rejects": [{ type: core.Input },],
 };
-var AfmSingleCheckboxComponent = /** @class */ (function () {
-    function AfmSingleCheckboxComponent() {
-        this._readonly = false;
-        this.required = false;
-        this.subscription = new Subscription.Subscription();
-        this.readonlyFormControl = new forms.FormControl();
+var AfcSelectComponent = /** @class */ (function (_super) {
+    __extends(AfcSelectComponent, _super);
+    function AfcSelectComponent(services) {
+        var _this = _super.call(this, services) || this;
+        _this.valueType = 'number';
+        _this.list = [];
+        _this.rejects = [];
+        _this.selected = null;
+        _this._readonly = false;
+        _this.dataPrepared$.pipe(operators.filter(function (v) { return !!v; }), operators.combineLatest(_this.innerFormControl.valueChanges)).subscribe(function (v) {
+            _this.selected = _this.data.find(function (d) { return d.forSelectValue === v[1]; });
+        });
+        return _this;
     }
-    Object.defineProperty(AfmSingleCheckboxComponent.prototype, "readonly", {
+    Object.defineProperty(AfcSelectComponent.prototype, "readonly", {
         get: function () {
             return this._readonly;
         },
@@ -1078,7 +862,173 @@ var AfmSingleCheckboxComponent = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    AfmSingleCheckboxComponent.prototype.ngOnInit = function () {
+    return AfcSelectComponent;
+}(AfcSelectBase));
+AfcSelectComponent.decorators = [
+    { type: core.Component, args: [{
+                selector: 'afc-select',
+                template: "\n    <label *ngIf=\"label\" [htmlFor]=\"id\"><span [hidden]=\"!required\">*&nbsp;</span>{{ label }}</label>\n    <ng-container *ngIf=\"!readonly\">\n      <select [id]=\"id\" class=\"form-control\" [formControl]=\"innerFormControl\" [required]=\"required\">\n        <option *ngIf=\"!required\" [ngValue]=\"null\"></option>\n        <option *ngFor=\"let item of data\" [ngValue]=\"item.forSelectValue\" [innerHtml]=\"item.forSelectName\"></option>\n      </select>\n      <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n    </ng-container>\n    <ng-container *ngIf=\"readonly\">\n      <span class=\"form-control\" readonly [innerHtml]=\"selected?.forSelectName\"></span>\n    </ng-container>\n  ",
+                styles: ["\n    span.selected {\n      text-decoration: underline;\n      text-decoration-style: double;\n    }\n  "],
+                providers: [{
+                        provide: forms.NG_VALUE_ACCESSOR,
+                        useExisting: core.forwardRef(function () { return AfcSelectComponent; }),
+                        multi: true
+                    },
+                    SelectorServiceInjector
+                ]
+            },] },
+];
+AfcSelectComponent.ctorParameters = function () { return [
+    { type: SelectorServiceInjector, },
+]; };
+AfcSelectComponent.propDecorators = {
+    "formControl": [{ type: core.Input },],
+    "sourceName": [{ type: core.Input },],
+    "label": [{ type: core.Input },],
+    "valueType": [{ type: core.Input },],
+    "list": [{ type: core.Input },],
+    "rejects": [{ type: core.Input },],
+    "readonly": [{ type: core.Input },],
+};
+var AfcSelect2Component = /** @class */ (function (_super) {
+    __extends(AfcSelect2Component, _super);
+    function AfcSelect2Component(service) {
+        var _this = _super.call(this, service) || this;
+        _this.valueType = 'number';
+        _this.rejects = [];
+        _this.placeholder = '';
+        _this._readonly = false;
+        _this.selected = null;
+        _this._data = [];
+        _this.valueTrigger$ = new Subject.Subject();
+        _this.preparedElement$ = new Subject.Subject();
+        _this.mySubscriptions = new Subscription.Subscription();
+        _this.onChangePropagate = function () { };
+        _this.mySubscriptions.add(_this.dataPrepared$.pipe(operators.combineLatest(_this.preparedElement$), operators.filter(function (v) { return !!v[0] && !!v[1]; }), operators.combineLatest(_this.valueTrigger$), operators.delay(0)).subscribe(function (v) {
+            if (_this.element) {
+                _this.element.val(v[1]).trigger('change').trigger('select2:select');
+            }
+            _this.selected = _this._data.find(function (d) { return d.forSelectValue === v[1]; });
+        }));
+        return _this;
+    }
+    Object.defineProperty(AfcSelect2Component.prototype, "readonly", {
+        get: function () {
+            return this._readonly;
+        },
+        set: function (flag) {
+            this._readonly = flag;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AfcSelect2Component.prototype, "data", {
+        get: function () {
+            return this._data;
+        },
+        set: function (data) {
+            this._data = data;
+            this.renderSelect2();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AfcSelect2Component.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        if (this.selector) {
+            this.element = jQuery(this.selector.nativeElement);
+            this.renderSelect2();
+            this.element.on('select2:select', function () {
+                var val = _this.selector.nativeElement.value;
+                if (/^[0-9]+$/.test(val)) {
+                    val = parseInt(val, 10);
+                }
+                if (_this._value !== val) {
+                    if (_this.valueType === 'object') {
+                        val = _this.data.find(function (l) { return l.forSelectValue === val; });
+                    }
+                    _this._value = val;
+                    _this.onChangePropagate(val);
+                }
+            });
+        }
+        this.preparedElement$.next(true);
+        this.mySubscriptions.add(this.innerFormControl.valueChanges.subscribe(function (v) {
+            _this.valueTrigger$.next(v);
+        }));
+    };
+    AfcSelect2Component.prototype.ngOnDestroy = function () {
+        _super.prototype.ngOnDestroy.call(this);
+        this.mySubscriptions.unsubscribe();
+        if (this.element) {
+            this.element.off('select2:select');
+        }
+    };
+    AfcSelect2Component.prototype.renderSelect2 = function () {
+        if (!this.element) {
+            return;
+        }
+        if (this.element.hasClass('select2-hidden-accessible') === true) {
+            this.element.select2('destroy');
+            this.element.html('');
+        }
+        this.element.select2({
+            data: this._data.map(function (d) {
+                return { id: d.forSelectValue, text: d.forSelectName };
+            }),
+            theme: 'bootstrap',
+            placeholder: this.placeholder,
+            allowClear: !this._required
+        });
+        this.valueTrigger$.next(this.formControl.value);
+    };
+    return AfcSelect2Component;
+}(AfcSelectBase));
+AfcSelect2Component.decorators = [
+    { type: core.Component, args: [{
+                selector: 'afc-select2',
+                template: "\n    <label><span [hidden]=\"!required\">*&nbsp;</span>{{ label }}</label>\n    <ng-container *ngIf=\"!readonly\">\n      <div>\n        <select #selector class=\"form-control\"></select>\n        <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n      </div>\n    </ng-container>\n    <ng-container *ngIf=\"readonly\">\n      <span class=\"form-control\" readonly [innerHtml]=\"selected?.forSelectName\"></span>\n    </ng-container>\n  ",
+                providers: [{
+                        provide: forms.NG_VALUE_ACCESSOR,
+                        useExisting: core.forwardRef(function () { return AfcSelect2Component; }),
+                        multi: true
+                    },
+                    SelectorServiceInjector
+                ]
+            },] },
+];
+AfcSelect2Component.ctorParameters = function () { return [
+    { type: SelectorServiceInjector, },
+]; };
+AfcSelect2Component.propDecorators = {
+    "formControl": [{ type: core.Input },],
+    "sourceName": [{ type: core.Input },],
+    "label": [{ type: core.Input },],
+    "valueType": [{ type: core.Input },],
+    "list": [{ type: core.Input },],
+    "rejects": [{ type: core.Input },],
+    "placeholder": [{ type: core.Input },],
+    "readonly": [{ type: core.Input },],
+    "selector": [{ type: core.ViewChild, args: ['selector',] },],
+};
+var AfcSingleCheckboxComponent = /** @class */ (function () {
+    function AfcSingleCheckboxComponent() {
+        this._readonly = false;
+        this.required = false;
+        this.subscription = new Subscription.Subscription();
+        this.readonlyFormControl = new forms.FormControl();
+    }
+    Object.defineProperty(AfcSingleCheckboxComponent.prototype, "readonly", {
+        get: function () {
+            return this._readonly;
+        },
+        set: function (flag) {
+            this._readonly = flag;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AfcSingleCheckboxComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.readonlyFormControl.disable();
         this.trueValueLabel = this.trueValueLabel ? this.trueValueLabel : this.label;
@@ -1088,47 +1038,91 @@ var AfmSingleCheckboxComponent = /** @class */ (function () {
             _this.onChangePropagate(false);
         }));
     };
-    AfmSingleCheckboxComponent.prototype.ngOnDestroy = function () {
+    AfcSingleCheckboxComponent.prototype.ngOnDestroy = function () {
         this.subscription.unsubscribe();
     };
-    AfmSingleCheckboxComponent.prototype.writeValue = function (v) {
+    AfcSingleCheckboxComponent.prototype.writeValue = function (v) {
         this.readonlyFormControl.patchValue(v);
     };
-    AfmSingleCheckboxComponent.prototype.registerOnChange = function (fn) {
+    AfcSingleCheckboxComponent.prototype.registerOnChange = function (fn) {
         this.onChangePropagate = fn;
     };
-    AfmSingleCheckboxComponent.prototype.registerOnTouched = function (_) { };
-    return AfmSingleCheckboxComponent;
+    AfcSingleCheckboxComponent.prototype.registerOnTouched = function (_) { };
+    return AfcSingleCheckboxComponent;
 }());
-AfmSingleCheckboxComponent.decorators = [
+AfcSingleCheckboxComponent.decorators = [
     { type: core.Component, args: [{
                 selector: 'single-checkbox',
-                template: "<p *ngIf=\"!!label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</p>\n<label class=\"checkbox-inline custom-checkbox nowrap\">\n  <input type=\"checkbox\" class=\"form-control\" *ngIf=\"!readonly\" [formControl]=\"formControl\">\n  <input type=\"checkbox\" class=\"form-control\" *ngIf=\"readonly\" [formControl]=\"readonlyFormControl\">\n  <span>{{ trueValueLabel }}</span>\n</label>\n<validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n",
-                styles: [""],
+                template: "\n    <p *ngIf=\"!!label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</p>\n    <label class=\"checkbox-inline custom-checkbox nowrap\">\n      <input type=\"checkbox\" class=\"form-control\" *ngIf=\"!readonly\" [formControl]=\"formControl\">\n      <input type=\"checkbox\" class=\"form-control\" *ngIf=\"readonly\" [formControl]=\"readonlyFormControl\">\n      <span>{{ trueValueLabel }}</span>\n    </label>\n    <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n  ",
                 providers: [{
                         provide: forms.NG_VALUE_ACCESSOR,
-                        useExisting: core.forwardRef(function () { return AfmSingleCheckboxComponent; }),
+                        useExisting: core.forwardRef(function () { return AfcSingleCheckboxComponent; }),
                         multi: true
                     }]
             },] },
 ];
-AfmSingleCheckboxComponent.ctorParameters = function () { return []; };
-AfmSingleCheckboxComponent.propDecorators = {
+AfcSingleCheckboxComponent.ctorParameters = function () { return []; };
+AfcSingleCheckboxComponent.propDecorators = {
     "formControl": [{ type: core.Input },],
     "label": [{ type: core.Input },],
     "trueValueLabel": [{ type: core.Input },],
     "readonly": [{ type: core.Input },],
 };
+var AfcTextareaComponent = /** @class */ (function () {
+    function AfcTextareaComponent() {
+    }
+    AfcTextareaComponent.prototype.ngOnInit = function () {
+        var err = this.formControl.validator && this.formControl.validator(new forms.FormControl());
+        this.required = err && !!err['required'];
+    };
+    AfcTextareaComponent.prototype.writeValue = function (_) { };
+    AfcTextareaComponent.prototype.registerOnChange = function (_) { };
+    AfcTextareaComponent.prototype.registerOnTouched = function (_) { };
+    return AfcTextareaComponent;
+}());
+AfcTextareaComponent.decorators = [
+    { type: core.Component, args: [{
+                selector: 'afc-textarea',
+                template: "\n    <label *ngIf=\"label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</label>\n    <textarea [formControl]=\"formControl\" class=\"form-control\"></textarea>\n    <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n  ",
+                providers: [{
+                        provide: forms.NG_VALUE_ACCESSOR,
+                        useExisting: core.forwardRef(function () { return AfcTextareaComponent; }),
+                        multi: true
+                    }]
+            },] },
+];
+AfcTextareaComponent.ctorParameters = function () { return []; };
+AfcTextareaComponent.propDecorators = {
+    "formControl": [{ type: core.Input },],
+    "label": [{ type: core.Input },],
+};
+var AfcValidateMessageComponent = /** @class */ (function () {
+    function AfcValidateMessageComponent() {
+    }
+    AfcValidateMessageComponent.prototype.ngOnInit = function () { };
+    return AfcValidateMessageComponent;
+}());
+AfcValidateMessageComponent.decorators = [
+    { type: core.Component, args: [{
+                selector: 'validate-message',
+                template: '<span [hidden]="!control.touched || control.valid"><ng-content></ng-content></span>',
+                styles: ["\n    span {\n      position: absolute;\n      color: #ffffff;\n      top: -15px;\n      right: -10px;\n      padding: 7px;\n      background-color: #bd362f;\n      border-radius: 7px;\n    }\n  ", "\n    span:before {\n      content: \"\";\n      position: absolute;\n      top: 100%;\n      left: 50%;\n      margin-left: -7px;\n      border: 7px solid transparent;\n      border-top: 7px solid #bd362f;\n    }\n  "]
+            },] },
+];
+AfcValidateMessageComponent.ctorParameters = function () { return []; };
+AfcValidateMessageComponent.propDecorators = {
+    "control": [{ type: core.Input },],
+};
 var COMPONENTS = [
-    AfmInputComponent,
-    AfmNumberComponent,
-    AfmTextareaComponent,
-    AfmValidateMessageComponent,
-    AfmSelectComponent,
-    AfmCheckboxComponent,
-    AfmRadioComponent,
-    AfmSelect2Component,
-    AfmSingleCheckboxComponent,
+    AfcInputComponent,
+    AfcNumberComponent,
+    AfcCheckboxComponent,
+    AfcRadioComponent,
+    AfcSelectComponent,
+    AfcSelect2Component,
+    AfcSingleCheckboxComponent,
+    AfcTextareaComponent,
+    AfcValidateMessageComponent,
 ];
 var AngularFormComponentsModule = /** @class */ (function () {
     function AngularFormComponentsModule() {
@@ -1142,27 +1136,26 @@ AngularFormComponentsModule.decorators = [
                     forms.FormsModule,
                     forms.ReactiveFormsModule,
                 ],
-                providers: [],
                 declarations: __spread(COMPONENTS),
                 exports: __spread(COMPONENTS)
             },] },
 ];
 
-exports.COMPONENTS = COMPONENTS;
 exports.AngularFormComponentsModule = AngularFormComponentsModule;
+exports.AfcInputComponent = AfcInputComponent;
+exports.AfcNumberComponent = AfcNumberComponent;
+exports.AfcCheckboxComponent = AfcCheckboxComponent;
+exports.AfcRadioComponent = AfcRadioComponent;
+exports.AfcSelectComponent = AfcSelectComponent;
+exports.AfcSelect2Component = AfcSelect2Component;
+exports.AfcSingleCheckboxComponent = AfcSingleCheckboxComponent;
+exports.AfcTextareaComponent = AfcTextareaComponent;
+exports.AfcValidateMessageComponent = AfcValidateMessageComponent;
 exports.FilterService = FilterService;
 exports.Selectable = Selectable;
 exports.MULTI_IMPORT_SERVICES_MAP = MULTI_IMPORT_SERVICES_MAP;
 exports.SelectorServiceInjector = SelectorServiceInjector;
-exports.ɵa = AfmInputComponent;
-exports.ɵb = AfmNumberComponent;
-exports.ɵf = AfmCheckboxComponent;
-exports.ɵg = AfmRadioComponent;
-exports.ɵh = AfmSelect2Component;
-exports.ɵe = AfmSelectComponent;
-exports.ɵi = AfmSingleCheckboxComponent;
-exports.ɵc = AfmTextareaComponent;
-exports.ɵd = AfmValidateMessageComponent;
+exports.ɵa = AfcSelectBase;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

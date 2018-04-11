@@ -53,7 +53,7 @@ class ArrayService implements SelectorService {
 
 let id = 0;
 
-export class AfmSelectBase implements OnInit, OnChanges, OnDestroy, ControlValueAccessor {
+export class AfcSelectBase implements OnInit, OnChanges, OnDestroy, ControlValueAccessor {
 
   protected _service: SelectorService;
 
@@ -127,7 +127,7 @@ export class AfmSelectBase implements OnInit, OnChanges, OnDestroy, ControlValue
   }
 
   ngOnInit() {
-    this.id = '_AfmSelect_' + id.toString();
+    this.id = '_AfcSelect_' + id.toString();
     id++;
     this.required = this._required;
     this.subscriptions.add(this.observer().subscribe(d => {

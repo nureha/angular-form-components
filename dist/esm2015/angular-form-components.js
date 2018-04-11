@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
-class AfmInputComponent {
+class AfcInputComponent {
     constructor() {
         this.type = 'text';
         this._readonly = false;
@@ -51,105 +51,29 @@ class AfmInputComponent {
      */
     registerOnTouched(_) { }
 }
-AfmInputComponent.decorators = [
+AfcInputComponent.decorators = [
     { type: Component, args: [{
-                selector: 'afm-input',
-                template: `<label *ngIf="label"><span *ngIf="required">*&nbsp;</span>{{ label }}</label>
-<input class="form-control"
-  [type]="type" [formControl]="formControl" [readonly]="readonly">
-<validate-message [control]="formControl"><ng-content></ng-content></validate-message>
-`,
-                styles: [``],
+                selector: 'afc-input',
+                template: `
+    <label *ngIf="label"><span *ngIf="required">*&nbsp;</span>{{ label }}</label>
+    <input class="form-control"
+      [type]="type" [formControl]="formControl" [readonly]="readonly">
+    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
+  `,
                 providers: [{
                         provide: NG_VALUE_ACCESSOR,
-                        useExisting: forwardRef(() => AfmInputComponent),
+                        useExisting: forwardRef(() => AfcInputComponent),
                         multi: true
                     }]
             },] },
 ];
 /** @nocollapse */
-AfmInputComponent.ctorParameters = () => [];
-AfmInputComponent.propDecorators = {
+AfcInputComponent.ctorParameters = () => [];
+AfcInputComponent.propDecorators = {
     "formControl": [{ type: Input },],
     "label": [{ type: Input },],
     "type": [{ type: Input },],
     "readonly": [{ type: Input },],
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-class AfmValidateMessageComponent {
-    constructor() { }
-    /**
-     * @return {?}
-     */
-    ngOnInit() { }
-}
-AfmValidateMessageComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'validate-message',
-                template: `<span [hidden]="!control.touched || control.valid"><ng-content></ng-content></span>
-`,
-                styles: [`span{position:absolute;color:#fff;top:-15px;right:-10px;padding:7px;background-color:#bd362f;border-radius:7px}span:before{content:"";position:absolute;top:100%;left:50%;margin-left:-7px;border:7px solid transparent;border-top:7px solid #bd362f}`]
-            },] },
-];
-/** @nocollapse */
-AfmValidateMessageComponent.ctorParameters = () => [];
-AfmValidateMessageComponent.propDecorators = {
-    "control": [{ type: Input },],
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-class AfmTextareaComponent {
-    constructor() { }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        const /** @type {?} */ err = this.formControl.validator && this.formControl.validator(new FormControl());
-        this.required = err && !!err['required'];
-    }
-    /**
-     * @param {?} _
-     * @return {?}
-     */
-    writeValue(_) { }
-    /**
-     * @param {?} _
-     * @return {?}
-     */
-    registerOnChange(_) { }
-    /**
-     * @param {?} _
-     * @return {?}
-     */
-    registerOnTouched(_) { }
-}
-AfmTextareaComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'afm-textarea',
-                template: `<label *ngIf="label"><span *ngIf="required">*&nbsp;</span>{{ label }}</label>
-<textarea [formControl]="formControl" class="form-control"></textarea>
-<validate-message [control]="formControl"><ng-content></ng-content></validate-message>
-`,
-                styles: [``],
-                providers: [{
-                        provide: NG_VALUE_ACCESSOR,
-                        useExisting: forwardRef(() => AfmTextareaComponent),
-                        multi: true
-                    }]
-            },] },
-];
-/** @nocollapse */
-AfmTextareaComponent.ctorParameters = () => [];
-AfmTextareaComponent.propDecorators = {
-    "formControl": [{ type: Input },],
-    "label": [{ type: Input },],
 };
 
 /**
@@ -228,7 +152,7 @@ function numberFormat(num, underPoint = -1) {
             .reverse().join('');
     }).join('.');
 }
-class AfmNumberComponent {
+class AfcNumberComponent {
     /**
      * @param {?} renderer
      * @param {?} elm
@@ -361,30 +285,30 @@ class AfmNumberComponent {
      */
     registerOnTouched(_) { }
 }
-AfmNumberComponent.decorators = [
+AfcNumberComponent.decorators = [
     { type: Component, args: [{
-                selector: 'afm-number',
-                template: `<label *ngIf="label"><span *ngIf="required">*&nbsp;</span>{{ label }}</label>
-<input class="form-control"
-  (blur)="onBlur()"
-  type="number" [formControl]="innerFormControl">
-<input class="form-control" (focus)="onFocus()" [readonly]="readonly">
-<validate-message [control]="formControl"><ng-content></ng-content></validate-message>
-`,
-                styles: [``],
+                selector: 'afc-number',
+                template: `
+    <label *ngIf="label"><span *ngIf="required">*&nbsp;</span>{{ label }}</label>
+    <input class="form-control"
+      (blur)="onBlur()"
+      type="number" [formControl]="innerFormControl">
+    <input class="form-control" (focus)="onFocus()" [readonly]="readonly">
+    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
+  `,
                 providers: [{
                         provide: NG_VALUE_ACCESSOR,
-                        useExisting: forwardRef(() => AfmNumberComponent),
+                        useExisting: forwardRef(() => AfcNumberComponent),
                         multi: true
                     }]
             },] },
 ];
 /** @nocollapse */
-AfmNumberComponent.ctorParameters = () => [
+AfcNumberComponent.ctorParameters = () => [
     { type: Renderer2, },
     { type: ElementRef, },
 ];
-AfmNumberComponent.propDecorators = {
+AfcNumberComponent.propDecorators = {
     "formControl": [{ type: Input },],
     "label": [{ type: Input },],
     "type": [{ type: Input },],
@@ -685,7 +609,7 @@ class ArrayService {
     }
 }
 let id = 0;
-class AfmSelectBase {
+class AfcSelectBase {
     /**
      * @param {?} services
      */
@@ -748,7 +672,7 @@ class AfmSelectBase {
      * @return {?}
      */
     ngOnInit() {
-        this.id = '_AfmSelect_' + id.toString();
+        this.id = '_AfcSelect_' + id.toString();
         id++;
         this.required = this._required;
         this.subscriptions.add(this.observer().subscribe(d => {
@@ -939,233 +863,7 @@ class AfmSelectBase {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
-class AfmSelectComponent extends AfmSelectBase {
-    /**
-     * @param {?} services
-     */
-    constructor(services) {
-        super(services);
-        this.valueType = 'number';
-        this.list = [];
-        this.rejects = [];
-        this.selected = null;
-        this._readonly = false;
-        this.dataPrepared$.pipe(filter(v => !!v), combineLatest(this.innerFormControl.valueChanges)).subscribe(v => {
-            this.selected = this.data.find(d => d.forSelectValue === v[1]);
-        });
-    }
-    /**
-     * @param {?} flag
-     * @return {?}
-     */
-    set readonly(flag) {
-        this._readonly = flag;
-    }
-    /**
-     * @return {?}
-     */
-    get readonly() {
-        return this._readonly;
-    }
-}
-AfmSelectComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'afm-select',
-                template: `<label *ngIf="label" [htmlFor]="id"><span [hidden]="!required">*&nbsp;</span>{{ label }}</label>
-<ng-container *ngIf="!readonly">
-  <select [id]="id" class="form-control" [formControl]="innerFormControl" [required]="required">
-    <option *ngIf="!required" [ngValue]="null"></option>
-    <option *ngFor="let item of data" [ngValue]="item.forSelectValue" [innerHtml]="item.forSelectName"></option>
-  </select>
-  <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
-</ng-container>
-<ng-container *ngIf="readonly">
-  <span class="form-control" readonly [innerHtml]="selected?.forSelectName"></span>
-</ng-container>
-`,
-                styles: [`label.margin-bottom{margin-bottom:20px}span.selected{text-decoration:underline;-webkit-text-decoration-style:double;text-decoration-style:double}p.fit{margin-bottom:0}`],
-                providers: [{
-                        provide: NG_VALUE_ACCESSOR,
-                        useExisting: forwardRef(() => AfmSelectComponent),
-                        multi: true
-                    },
-                    SelectorServiceInjector
-                ]
-            },] },
-];
-/** @nocollapse */
-AfmSelectComponent.ctorParameters = () => [
-    { type: SelectorServiceInjector, },
-];
-AfmSelectComponent.propDecorators = {
-    "formControl": [{ type: Input },],
-    "sourceName": [{ type: Input },],
-    "label": [{ type: Input },],
-    "valueType": [{ type: Input },],
-    "list": [{ type: Input },],
-    "rejects": [{ type: Input },],
-    "readonly": [{ type: Input },],
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-class AfmSelect2Component extends AfmSelectBase {
-    /**
-     * @param {?} service
-     */
-    constructor(service) {
-        super(service);
-        this.valueType = 'number';
-        this.rejects = [];
-        this.placeholder = '';
-        this._readonly = false;
-        this.selected = null;
-        this._data = [];
-        this.valueTrigger$ = new Subject();
-        this.preparedElement$ = new Subject();
-        this.mySubscriptions = new Subscription();
-        this.onChangePropagate = () => { };
-        this.mySubscriptions.add(this.dataPrepared$.pipe(combineLatest(this.preparedElement$), filter(v => !!v[0] && !!v[1]), combineLatest(this.valueTrigger$), delay(0)).subscribe(v => {
-            if (this.element) {
-                this.element.val(v[1]).trigger('change').trigger('select2:select');
-            }
-            this.selected = this._data.find(d => d.forSelectValue === v[1]);
-        }));
-    }
-    /**
-     * @param {?} flag
-     * @return {?}
-     */
-    set readonly(flag) {
-        this._readonly = flag;
-    }
-    /**
-     * @return {?}
-     */
-    get readonly() {
-        return this._readonly;
-    }
-    /**
-     * @param {?} data
-     * @return {?}
-     */
-    set data(data) {
-        this._data = data;
-        this.renderSelect2();
-    }
-    /**
-     * @return {?}
-     */
-    get data() {
-        return this._data;
-    }
-    /**
-     * @return {?}
-     */
-    ngAfterViewInit() {
-        if (this.selector) {
-            this.element = jQuery(this.selector.nativeElement);
-            this.renderSelect2();
-            this.element.on('select2:select', () => {
-                let /** @type {?} */ val = this.selector.nativeElement.value;
-                // FIXME 文字列だけど数字だけの値を扱うこともあるかもしれない・・・
-                if (/^[0-9]+$/.test(val)) {
-                    val = parseInt(val, 10);
-                }
-                if (this._value !== val) {
-                    if (this.valueType === 'object') {
-                        val = this.data.find(l => l.forSelectValue === val);
-                    }
-                    this._value = val;
-                    this.onChangePropagate(val);
-                }
-            });
-        }
-        this.preparedElement$.next(true);
-        // default値設定のときだけ
-        this.mySubscriptions.add(this.innerFormControl.valueChanges.subscribe(v => {
-            this.valueTrigger$.next(v);
-        }));
-    }
-    /**
-     * @return {?}
-     */
-    ngOnDestroy() {
-        super.ngOnDestroy();
-        this.mySubscriptions.unsubscribe();
-        if (this.element) {
-            this.element.off('select2:select');
-        }
-    }
-    /**
-     * @return {?}
-     */
-    renderSelect2() {
-        if (!this.element) {
-            return;
-        }
-        if (this.element.hasClass('select2-hidden-accessible') === true) {
-            this.element.select2('destroy');
-            this.element.html('');
-        }
-        this.element.select2({
-            data: this._data.map(d => {
-                return { id: d.forSelectValue, text: d.forSelectName };
-            }),
-            theme: 'bootstrap',
-            placeholder: this.placeholder,
-            allowClear: !this._required
-        });
-        this.valueTrigger$.next(this.formControl.value);
-    }
-}
-AfmSelect2Component.decorators = [
-    { type: Component, args: [{
-                selector: 'afm-select2',
-                template: `<label><span [hidden]="!required">*&nbsp;</span>{{ label }}</label>
-<ng-container *ngIf="!readonly">
-  <div>
-    <select #selector class="form-control"></select>
-    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
-  </div>
-</ng-container>
-<ng-container *ngIf="readonly">
-  <span class="form-control" readonly [innerHtml]="selected?.forSelectName"></span>
-</ng-container>
-`,
-                styles: [``],
-                providers: [{
-                        provide: NG_VALUE_ACCESSOR,
-                        useExisting: forwardRef(() => AfmSelect2Component),
-                        multi: true
-                    },
-                    SelectorServiceInjector
-                ]
-            },] },
-];
-/** @nocollapse */
-AfmSelect2Component.ctorParameters = () => [
-    { type: SelectorServiceInjector, },
-];
-AfmSelect2Component.propDecorators = {
-    "formControl": [{ type: Input },],
-    "sourceName": [{ type: Input },],
-    "label": [{ type: Input },],
-    "valueType": [{ type: Input },],
-    "list": [{ type: Input },],
-    "rejects": [{ type: Input },],
-    "placeholder": [{ type: Input },],
-    "readonly": [{ type: Input },],
-    "selector": [{ type: ViewChild, args: ['selector',] },],
-};
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes} checked by tsc
- */
-class AfmCheckboxComponent extends AfmSelectBase {
+class AfcCheckboxComponent extends AfcSelectBase {
     /**
      * @param {?} services
      */
@@ -1286,34 +984,48 @@ class AfmCheckboxComponent extends AfmSelectBase {
         this.innerFormControl.patchValue(val);
     }
 }
-AfmCheckboxComponent.decorators = [
+AfcCheckboxComponent.decorators = [
     { type: Component, args: [{
-                selector: 'afm-checkbox',
-                template: `<p>{{ label }}</p>
-<div *ngIf="!!filter">
-  <div class="form-group col-md-12">
-    <div class="col-md-2">
-      <p class="fit">表示中の選択肢すべてを</p>
-      <button type="button" class="btn btn-info btn-sm" (click)="allCheck()">選択</button>
-      <button type="button" class="btn btn-warning btn-sm" (click)="allClear()">クリア</button>
+                selector: 'afc-checkbox',
+                template: `
+    <p>{{ label }}</p>
+    <div *ngIf="!!filter">
+      <div class="form-group col-md-12">
+        <div class="col-md-2">
+          <p class="fit">表示中の選択肢すべてを</p>
+          <button type="button" class="btn btn-info btn-sm" (click)="allCheck()">選択</button>
+          <button type="button" class="btn btn-warning btn-sm" (click)="allClear()">クリア</button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<label class="checkbox-inline hidden"></label>
-<label htmlFor="{{ id }}_{{ item.forSelectValue }}" *ngFor="let item of filteredData"
-    class="checkbox-inline custom-checkbox nowrap margin-bottom">
-  <input id="{{ id }}_{{ item.forSelectValue }}" type="checkbox" class="form-control"
-    (change)="onChange($event, item.forSelectValue)" [checked]="value.indexOf(item.forSelectValue) !== -1">
-  <span [ngClass]="{'selected': value.indexOf(item.forSelectValue) !== -1}"
-    [style.width]="width" [innerHtml]="item.forSelectName"></span>
-</label>
-<br>
-<validate-message [control]="formControl"><ng-content></ng-content></validate-message>
-`,
-                styles: [`label.margin-bottom{margin-bottom:20px}span.selected{text-decoration:underline;-webkit-text-decoration-style:double;text-decoration-style:double}p.fit{margin-bottom:0}`],
+    <label class="checkbox-inline hidden"></label>
+    <label htmlFor="{{ id }}_{{ item.forSelectValue }}" *ngFor="let item of filteredData"
+        class="checkbox-inline custom-checkbox nowrap margin-bottom">
+      <input id="{{ id }}_{{ item.forSelectValue }}" type="checkbox" class="form-control"
+        (change)="onChange($event, item.forSelectValue)" [checked]="value.indexOf(item.forSelectValue) !== -1">
+      <span [ngClass]="{'selected': value.indexOf(item.forSelectValue) !== -1}"
+        [style.width]="width" [innerHtml]="item.forSelectName"></span>
+    </label>
+    <br>
+    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
+  `,
+                styles: [`
+    span.selected {
+      text-decoration: underline;
+      text-decoration-style: double;
+    }
+  `, `
+    label.margin-bottom {
+      margin-bottom: 20px;
+    }
+  `, `
+    p.fit {
+      margin-bottom: 0;
+    }
+  `],
                 providers: [{
                         provide: NG_VALUE_ACCESSOR,
-                        useExisting: forwardRef(() => AfmCheckboxComponent),
+                        useExisting: forwardRef(() => AfcCheckboxComponent),
                         multi: true
                     },
                     SelectorServiceInjector
@@ -1321,10 +1033,10 @@ AfmCheckboxComponent.decorators = [
             },] },
 ];
 /** @nocollapse */
-AfmCheckboxComponent.ctorParameters = () => [
+AfcCheckboxComponent.ctorParameters = () => [
     { type: SelectorServiceInjector, },
 ];
-AfmCheckboxComponent.propDecorators = {
+AfcCheckboxComponent.propDecorators = {
     "formControl": [{ type: Input },],
     "sourceName": [{ type: Input },],
     "label": [{ type: Input },],
@@ -1338,7 +1050,7 @@ AfmCheckboxComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
-class AfmRadioComponent extends AfmSelectBase {
+class AfcRadioComponent extends AfcSelectBase {
     /**
      * @param {?} services
      */
@@ -1349,22 +1061,22 @@ class AfmRadioComponent extends AfmSelectBase {
         this.rejects = [];
     }
 }
-AfmRadioComponent.decorators = [
+AfcRadioComponent.decorators = [
     { type: Component, args: [{
-                selector: 'afm-radio',
-                template: `<p *ngIf="!!label"><span [hidden]="!required">*&nbsp;</span>{{ label }}</p>
-<label htmlFor="{{ id }}_{{ item.forSelectValue }}" *ngFor="let item of data" class="radio-inline custom-radio nowrap">
-  <input id="{{ id }}_{{ item.forSelectValue }}" type="radio" class="form-control" name="{{ id }}"
-    [value]="item.forSelectValue" [formControl]="innerFormControl">
-  <span [innerHtml]="item.forSelectName"></span>
-</label>
-<br>
-<validate-message [control]="formControl"><ng-content></ng-content></validate-message>
-`,
-                styles: [`label.margin-bottom{margin-bottom:20px}span.selected{text-decoration:underline;-webkit-text-decoration-style:double;text-decoration-style:double}p.fit{margin-bottom:0}`],
+                selector: 'afc-radio',
+                template: `
+    <p *ngIf="!!label"><span [hidden]="!required">*&nbsp;</span>{{ label }}</p>
+    <label htmlFor="{{ id }}_{{ item.forSelectValue }}" *ngFor="let item of data" class="radio-inline custom-radio nowrap">
+      <input id="{{ id }}_{{ item.forSelectValue }}" type="radio" class="form-control" name="{{ id }}"
+        [value]="item.forSelectValue" [formControl]="innerFormControl">
+      <span [innerHtml]="item.forSelectName"></span>
+    </label>
+    <br>
+    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
+  `,
                 providers: [{
                         provide: NG_VALUE_ACCESSOR,
-                        useExisting: forwardRef(() => AfmRadioComponent),
+                        useExisting: forwardRef(() => AfcRadioComponent),
                         multi: true
                     },
                     SelectorServiceInjector
@@ -1372,10 +1084,10 @@ AfmRadioComponent.decorators = [
             },] },
 ];
 /** @nocollapse */
-AfmRadioComponent.ctorParameters = () => [
+AfcRadioComponent.ctorParameters = () => [
     { type: SelectorServiceInjector, },
 ];
-AfmRadioComponent.propDecorators = {
+AfcRadioComponent.propDecorators = {
     "formControl": [{ type: Input },],
     "sourceName": [{ type: Input },],
     "label": [{ type: Input },],
@@ -1388,12 +1100,239 @@ AfmRadioComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+class AfcSelectComponent extends AfcSelectBase {
+    /**
+     * @param {?} services
+     */
+    constructor(services) {
+        super(services);
+        this.valueType = 'number';
+        this.list = [];
+        this.rejects = [];
+        this.selected = null;
+        this._readonly = false;
+        this.dataPrepared$.pipe(filter(v => !!v), combineLatest(this.innerFormControl.valueChanges)).subscribe(v => {
+            this.selected = this.data.find(d => d.forSelectValue === v[1]);
+        });
+    }
+    /**
+     * @param {?} flag
+     * @return {?}
+     */
+    set readonly(flag) {
+        this._readonly = flag;
+    }
+    /**
+     * @return {?}
+     */
+    get readonly() {
+        return this._readonly;
+    }
+}
+AfcSelectComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'afc-select',
+                template: `
+    <label *ngIf="label" [htmlFor]="id"><span [hidden]="!required">*&nbsp;</span>{{ label }}</label>
+    <ng-container *ngIf="!readonly">
+      <select [id]="id" class="form-control" [formControl]="innerFormControl" [required]="required">
+        <option *ngIf="!required" [ngValue]="null"></option>
+        <option *ngFor="let item of data" [ngValue]="item.forSelectValue" [innerHtml]="item.forSelectName"></option>
+      </select>
+      <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
+    </ng-container>
+    <ng-container *ngIf="readonly">
+      <span class="form-control" readonly [innerHtml]="selected?.forSelectName"></span>
+    </ng-container>
+  `,
+                styles: [`
+    span.selected {
+      text-decoration: underline;
+      text-decoration-style: double;
+    }
+  `],
+                providers: [{
+                        provide: NG_VALUE_ACCESSOR,
+                        useExisting: forwardRef(() => AfcSelectComponent),
+                        multi: true
+                    },
+                    SelectorServiceInjector
+                ]
+            },] },
+];
+/** @nocollapse */
+AfcSelectComponent.ctorParameters = () => [
+    { type: SelectorServiceInjector, },
+];
+AfcSelectComponent.propDecorators = {
+    "formControl": [{ type: Input },],
+    "sourceName": [{ type: Input },],
+    "label": [{ type: Input },],
+    "valueType": [{ type: Input },],
+    "list": [{ type: Input },],
+    "rejects": [{ type: Input },],
+    "readonly": [{ type: Input },],
+};
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
-class AfmSingleCheckboxComponent {
+class AfcSelect2Component extends AfcSelectBase {
+    /**
+     * @param {?} service
+     */
+    constructor(service) {
+        super(service);
+        this.valueType = 'number';
+        this.rejects = [];
+        this.placeholder = '';
+        this._readonly = false;
+        this.selected = null;
+        this._data = [];
+        this.valueTrigger$ = new Subject();
+        this.preparedElement$ = new Subject();
+        this.mySubscriptions = new Subscription();
+        this.onChangePropagate = () => { };
+        this.mySubscriptions.add(this.dataPrepared$.pipe(combineLatest(this.preparedElement$), filter(v => !!v[0] && !!v[1]), combineLatest(this.valueTrigger$), delay(0)).subscribe(v => {
+            if (this.element) {
+                this.element.val(v[1]).trigger('change').trigger('select2:select');
+            }
+            this.selected = this._data.find(d => d.forSelectValue === v[1]);
+        }));
+    }
+    /**
+     * @param {?} flag
+     * @return {?}
+     */
+    set readonly(flag) {
+        this._readonly = flag;
+    }
+    /**
+     * @return {?}
+     */
+    get readonly() {
+        return this._readonly;
+    }
+    /**
+     * @param {?} data
+     * @return {?}
+     */
+    set data(data) {
+        this._data = data;
+        this.renderSelect2();
+    }
+    /**
+     * @return {?}
+     */
+    get data() {
+        return this._data;
+    }
+    /**
+     * @return {?}
+     */
+    ngAfterViewInit() {
+        if (this.selector) {
+            this.element = jQuery(this.selector.nativeElement);
+            this.renderSelect2();
+            this.element.on('select2:select', () => {
+                let /** @type {?} */ val = this.selector.nativeElement.value;
+                // FIXME 文字列だけど数字だけの値を扱うこともあるかもしれない・・・
+                if (/^[0-9]+$/.test(val)) {
+                    val = parseInt(val, 10);
+                }
+                if (this._value !== val) {
+                    if (this.valueType === 'object') {
+                        val = this.data.find(l => l.forSelectValue === val);
+                    }
+                    this._value = val;
+                    this.onChangePropagate(val);
+                }
+            });
+        }
+        this.preparedElement$.next(true);
+        // default値設定のときだけ
+        this.mySubscriptions.add(this.innerFormControl.valueChanges.subscribe(v => {
+            this.valueTrigger$.next(v);
+        }));
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        super.ngOnDestroy();
+        this.mySubscriptions.unsubscribe();
+        if (this.element) {
+            this.element.off('select2:select');
+        }
+    }
+    /**
+     * @return {?}
+     */
+    renderSelect2() {
+        if (!this.element) {
+            return;
+        }
+        if (this.element.hasClass('select2-hidden-accessible') === true) {
+            this.element.select2('destroy');
+            this.element.html('');
+        }
+        this.element.select2({
+            data: this._data.map(d => {
+                return { id: d.forSelectValue, text: d.forSelectName };
+            }),
+            theme: 'bootstrap',
+            placeholder: this.placeholder,
+            allowClear: !this._required
+        });
+        this.valueTrigger$.next(this.formControl.value);
+    }
+}
+AfcSelect2Component.decorators = [
+    { type: Component, args: [{
+                selector: 'afc-select2',
+                template: `
+    <label><span [hidden]="!required">*&nbsp;</span>{{ label }}</label>
+    <ng-container *ngIf="!readonly">
+      <div>
+        <select #selector class="form-control"></select>
+        <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="readonly">
+      <span class="form-control" readonly [innerHtml]="selected?.forSelectName"></span>
+    </ng-container>
+  `,
+                providers: [{
+                        provide: NG_VALUE_ACCESSOR,
+                        useExisting: forwardRef(() => AfcSelect2Component),
+                        multi: true
+                    },
+                    SelectorServiceInjector
+                ]
+            },] },
+];
+/** @nocollapse */
+AfcSelect2Component.ctorParameters = () => [
+    { type: SelectorServiceInjector, },
+];
+AfcSelect2Component.propDecorators = {
+    "formControl": [{ type: Input },],
+    "sourceName": [{ type: Input },],
+    "label": [{ type: Input },],
+    "valueType": [{ type: Input },],
+    "list": [{ type: Input },],
+    "rejects": [{ type: Input },],
+    "placeholder": [{ type: Input },],
+    "readonly": [{ type: Input },],
+    "selector": [{ type: ViewChild, args: ['selector',] },],
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+class AfcSingleCheckboxComponent {
     constructor() {
         this._readonly = false;
         this.required = false;
@@ -1451,28 +1390,28 @@ class AfmSingleCheckboxComponent {
      */
     registerOnTouched(_) { }
 }
-AfmSingleCheckboxComponent.decorators = [
+AfcSingleCheckboxComponent.decorators = [
     { type: Component, args: [{
                 selector: 'single-checkbox',
-                template: `<p *ngIf="!!label"><span *ngIf="required">*&nbsp;</span>{{ label }}</p>
-<label class="checkbox-inline custom-checkbox nowrap">
-  <input type="checkbox" class="form-control" *ngIf="!readonly" [formControl]="formControl">
-  <input type="checkbox" class="form-control" *ngIf="readonly" [formControl]="readonlyFormControl">
-  <span>{{ trueValueLabel }}</span>
-</label>
-<validate-message [control]="formControl"><ng-content></ng-content></validate-message>
-`,
-                styles: [``],
+                template: `
+    <p *ngIf="!!label"><span *ngIf="required">*&nbsp;</span>{{ label }}</p>
+    <label class="checkbox-inline custom-checkbox nowrap">
+      <input type="checkbox" class="form-control" *ngIf="!readonly" [formControl]="formControl">
+      <input type="checkbox" class="form-control" *ngIf="readonly" [formControl]="readonlyFormControl">
+      <span>{{ trueValueLabel }}</span>
+    </label>
+    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
+  `,
                 providers: [{
                         provide: NG_VALUE_ACCESSOR,
-                        useExisting: forwardRef(() => AfmSingleCheckboxComponent),
+                        useExisting: forwardRef(() => AfcSingleCheckboxComponent),
                         multi: true
                     }]
             },] },
 ];
 /** @nocollapse */
-AfmSingleCheckboxComponent.ctorParameters = () => [];
-AfmSingleCheckboxComponent.propDecorators = {
+AfcSingleCheckboxComponent.ctorParameters = () => [];
+AfcSingleCheckboxComponent.propDecorators = {
     "formControl": [{ type: Input },],
     "label": [{ type: Input },],
     "trueValueLabel": [{ type: Input },],
@@ -1483,16 +1422,121 @@ AfmSingleCheckboxComponent.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes} checked by tsc
  */
+class AfcTextareaComponent {
+    constructor() { }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        const /** @type {?} */ err = this.formControl.validator && this.formControl.validator(new FormControl());
+        this.required = err && !!err['required'];
+    }
+    /**
+     * @param {?} _
+     * @return {?}
+     */
+    writeValue(_) { }
+    /**
+     * @param {?} _
+     * @return {?}
+     */
+    registerOnChange(_) { }
+    /**
+     * @param {?} _
+     * @return {?}
+     */
+    registerOnTouched(_) { }
+}
+AfcTextareaComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'afc-textarea',
+                template: `
+    <label *ngIf="label"><span *ngIf="required">*&nbsp;</span>{{ label }}</label>
+    <textarea [formControl]="formControl" class="form-control"></textarea>
+    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
+  `,
+                providers: [{
+                        provide: NG_VALUE_ACCESSOR,
+                        useExisting: forwardRef(() => AfcTextareaComponent),
+                        multi: true
+                    }]
+            },] },
+];
+/** @nocollapse */
+AfcTextareaComponent.ctorParameters = () => [];
+AfcTextareaComponent.propDecorators = {
+    "formControl": [{ type: Input },],
+    "label": [{ type: Input },],
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+class AfcValidateMessageComponent {
+    constructor() { }
+    /**
+     * @return {?}
+     */
+    ngOnInit() { }
+}
+AfcValidateMessageComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'validate-message',
+                template: '<span [hidden]="!control.touched || control.valid"><ng-content></ng-content></span>',
+                styles: [`
+    span {
+      position: absolute;
+      color: #ffffff;
+      top: -15px;
+      right: -10px;
+      padding: 7px;
+      background-color: #bd362f;
+      border-radius: 7px;
+    }
+  `, `
+    span:before {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -7px;
+      border: 7px solid transparent;
+      border-top: 7px solid #bd362f;
+    }
+  `]
+            },] },
+];
+/** @nocollapse */
+AfcValidateMessageComponent.ctorParameters = () => [];
+AfcValidateMessageComponent.propDecorators = {
+    "control": [{ type: Input },],
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
 const COMPONENTS = [
-    AfmInputComponent,
-    AfmNumberComponent,
-    AfmTextareaComponent,
-    AfmValidateMessageComponent,
-    AfmSelectComponent,
-    AfmCheckboxComponent,
-    AfmRadioComponent,
-    AfmSelect2Component,
-    AfmSingleCheckboxComponent,
+    AfcInputComponent,
+    AfcNumberComponent,
+    AfcCheckboxComponent,
+    AfcRadioComponent,
+    AfcSelectComponent,
+    AfcSelect2Component,
+    AfcSingleCheckboxComponent,
+    AfcTextareaComponent,
+    AfcValidateMessageComponent,
 ];
 class AngularFormComponentsModule {
 }
@@ -1503,7 +1547,6 @@ AngularFormComponentsModule.decorators = [
                     FormsModule,
                     ReactiveFormsModule,
                 ],
-                providers: [],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS]
             },] },
@@ -1522,5 +1565,5 @@ AngularFormComponentsModule.decorators = [
  * Generated bundle index. Do not edit.
  */
 
-export { COMPONENTS, AngularFormComponentsModule, FilterService, Selectable, MULTI_IMPORT_SERVICES_MAP, SelectorServiceInjector, AfmInputComponent as ɵa, AfmNumberComponent as ɵb, AfmCheckboxComponent as ɵf, AfmRadioComponent as ɵg, AfmSelect2Component as ɵh, AfmSelectComponent as ɵe, AfmSingleCheckboxComponent as ɵi, AfmTextareaComponent as ɵc, AfmValidateMessageComponent as ɵd };
+export { AngularFormComponentsModule, AfcInputComponent, AfcNumberComponent, AfcCheckboxComponent, AfcRadioComponent, AfcSelectComponent, AfcSelect2Component, AfcSingleCheckboxComponent, AfcTextareaComponent, AfcValidateMessageComponent, FilterService, Selectable, MULTI_IMPORT_SERVICES_MAP, SelectorServiceInjector, AfcSelectBase as ɵa };
 //# sourceMappingURL=angular-form-components.js.map

@@ -4,6 +4,10 @@
   "version": "1.0.0-beta.1",
   "description": "",
   "main": "bundles/angular-form-components.umd.js",
+  "module": "esm5/angular-form-components.js",
+  "esm5": "./dist/esm5/angular-form-components.js",
+  "esm2015": "./dist/esm2015/angular-form-components.js",
+  "typings": "angular-form-components.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nureha/angular-form-components.git"
@@ -41,9 +45,7 @@
     "rxjs": "^5.5.8",
     "zone.js": "^0.8.26"
   },
-  "module": "esm5/angular-form-components.js",
   "es2015": "esm2015/angular-form-components.js",
-  "typings": "angular-form-components.d.ts",
   "metadata": "angular-form-components.metadata.json",
   "dependencies": {
     "tslib": "^1.7.1"

@@ -4,21 +4,55 @@ import { filter, combineLatest, delay } from 'rxjs/operators';
 
 import { FilterService } from '../../services';
 import { SelectorServiceInjector, Selectable } from '../../services';
-import { AfmSelectBase } from './select-base.component';
+import { AfcSelectBase } from './select-base.component';
 
 @Component({
-  selector: 'afm-checkbox',
-  templateUrl: './checkbox.component.html',
-  styleUrls: ['./select.component.css'],
+  selector: 'afc-checkbox',
+  template: `
+    <p>{{ label }}</p>
+    <div *ngIf="!!filter">
+      <div class="form-group col-md-12">
+        <div class="col-md-2">
+          <p class="fit">表示中の選択肢すべてを</p>
+          <button type="button" class="btn btn-info btn-sm" (click)="allCheck()">選択</button>
+          <button type="button" class="btn btn-warning btn-sm" (click)="allClear()">クリア</button>
+        </div>
+      </div>
+    </div>
+    <label class="checkbox-inline hidden"></label>
+    <label htmlFor="{{ id }}_{{ item.forSelectValue }}" *ngFor="let item of filteredData"
+        class="checkbox-inline custom-checkbox nowrap margin-bottom">
+      <input id="{{ id }}_{{ item.forSelectValue }}" type="checkbox" class="form-control"
+        (change)="onChange($event, item.forSelectValue)" [checked]="value.indexOf(item.forSelectValue) !== -1">
+      <span [ngClass]="{'selected': value.indexOf(item.forSelectValue) !== -1}"
+        [style.width]="width" [innerHtml]="item.forSelectName"></span>
+    </label>
+    <br>
+    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
+  `,
+  styles: [`
+    span.selected {
+      text-decoration: underline;
+      text-decoration-style: double;
+    }
+  `, `
+    label.margin-bottom {
+      margin-bottom: 20px;
+    }
+  `, `
+    p.fit {
+      margin-bottom: 0;
+    }
+  `],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => AfmCheckboxComponent),
+    useExisting: forwardRef(() => AfcCheckboxComponent),
     multi: true
   },
     SelectorServiceInjector
   ]
 })
-export class AfmCheckboxComponent extends AfmSelectBase implements OnInit {
+export class AfcCheckboxComponent extends AfcSelectBase implements OnInit {
 
   @Input() formControl: FormControl;
   @Input() sourceName: string;

@@ -9,9 +9,9 @@ import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/timer';
 import { share } from 'rxjs/operators';
 
-import { AfmSelectComponent } from './select.component';
-import { AfmCheckboxComponent } from './checkbox.component';
-import { AfmValidateMessageComponent } from '../validate-message/validate-message.component';
+import { AfcSelectComponent } from './select.component';
+import { AfcCheckboxComponent } from './checkbox.component';
+import { AfcValidateMessageComponent } from '../validate-message.component';
 import { SelectorServiceInjector, SelectorService, Selectable, MULTI_IMPORT_SERVICES_MAP } from '../../services';
 
 class SelectableConstruct extends Selectable {
@@ -91,31 +91,33 @@ _map.set('fruit', FruitService);
 _map.set('color', ColorService);
 
 @Component({
-  selector: 'only-afm-select-component',
-  template: `<afm-select *ngIf="formControl"
-    [formControl]="formControl" [sourceName]="sourceName"
-  ></afm-select>
-  <afm-checkbox *ngIf="formControl2"
-    [formControl]="formControl2" [sourceName]="sourceName2"
-  ></afm-checkbox>`
+  selector: 'only-afc-select-component',
+  template: `
+    <afc-select *ngIf="formControl"
+      [formControl]="formControl" [sourceName]="sourceName"
+    ></afc-select>
+    <afc-checkbox *ngIf="formControl2"
+      [formControl]="formControl2" [sourceName]="sourceName2"
+    ></afc-checkbox>
+  `
 })
-class OnlyAfmSelectComponent {
+class OnlyAfcSelectComponent {
   formControl: FormControl;
   sourceName: string;
   formControl2: FormControl;
   sourceName2: string;
 }
 
-describe('AfmSelectComponent', () => {
-  let component: OnlyAfmSelectComponent;
-  let fixture: ComponentFixture<OnlyAfmSelectComponent>;
+describe('AfcSelectComponent', () => {
+  let component: OnlyAfcSelectComponent;
+  let fixture: ComponentFixture<OnlyAfcSelectComponent>;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        OnlyAfmSelectComponent,
-        AfmSelectComponent,
-        AfmCheckboxComponent,
-        AfmValidateMessageComponent,
+        OnlyAfcSelectComponent,
+        AfcSelectComponent,
+        AfcCheckboxComponent,
+        AfcValidateMessageComponent,
       ],
       imports: [ReactiveFormsModule, FormsModule],
       providers: [
@@ -131,7 +133,7 @@ describe('AfmSelectComponent', () => {
   }));
 
   it('should set default value for required form', fakeAsync(() => {
-    fixture = TestBed.createComponent(OnlyAfmSelectComponent);
+    fixture = TestBed.createComponent(OnlyAfcSelectComponent);
     component = fixture.componentInstance;
     component.formControl = new FormControl(null, Validators.required);
     component.sourceName = 'fruit';
@@ -145,7 +147,7 @@ describe('AfmSelectComponent', () => {
     expect(fixture.debugElement.query(By.css('option:checked')).nativeElement.textContent).toBe('orange');
   }));
   it('should keep value which set before loading data', fakeAsync(() => {
-    fixture = TestBed.createComponent(OnlyAfmSelectComponent);
+    fixture = TestBed.createComponent(OnlyAfcSelectComponent);
     component = fixture.componentInstance;
     component.formControl = new FormControl(1, Validators.required);
     component.sourceName = 'fruit:delay=1000';
@@ -159,7 +161,7 @@ describe('AfmSelectComponent', () => {
     expect(fixture.debugElement.query(By.css('option:checked')).nativeElement.textContent).toBe('apple');
   }));
   it('should have own each service', fakeAsync(() => {
-    fixture = TestBed.createComponent(OnlyAfmSelectComponent);
+    fixture = TestBed.createComponent(OnlyAfcSelectComponent);
     component = fixture.componentInstance;
     component.formControl = new FormControl(1, Validators.required);
     component.sourceName = 'color';
@@ -179,7 +181,7 @@ describe('AfmSelectComponent', () => {
     expect(fixture.debugElement.queryAll(By.css('[type="checkbox"]')).length).toBe(3);
   }));
   it('should be checked values', fakeAsync(() => {
-    fixture = TestBed.createComponent(OnlyAfmSelectComponent);
+    fixture = TestBed.createComponent(OnlyAfcSelectComponent);
     component = fixture.componentInstance;
     component.formControl2 = new FormControl([1, 3]);
     component.sourceName2 = 'fruit';
