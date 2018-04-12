@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AfcNumberComponent } from './number.component';
 import { AfcValidateMessageComponent } from './validate-message.component';
+import { NopeErrorMessageFactoryService, ERROR_MESSAGE_FACTORY_SERVICE } from '../services';
 
 describe('AfcNumberComponent', () => {
   let component: AfcNumberComponent;
@@ -14,7 +15,14 @@ describe('AfcNumberComponent', () => {
         AfcNumberComponent,
         AfcValidateMessageComponent
       ],
-      imports: [ReactiveFormsModule, FormsModule]
+      imports: [
+        ReactiveFormsModule,
+        FormsModule,
+      ],
+      providers: [{
+        provide: ERROR_MESSAGE_FACTORY_SERVICE,
+        useClass: NopeErrorMessageFactoryService,
+      }]
     })
     .compileComponents();
   }));

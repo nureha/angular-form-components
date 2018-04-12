@@ -4,15 +4,15 @@ import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-  selector: 'single-checkbox',
+  selector: 'afc-single-checkbox',
   template: `
     <p *ngIf="!!label"><span *ngIf="required">*&nbsp;</span>{{ label }}</p>
+    <afc-validate-message [control]="formControl" [name]="label"><ng-content></ng-content></afc-validate-message>
     <label class="checkbox-inline custom-checkbox nowrap">
       <input type="checkbox" class="form-control" *ngIf="!readonly" [formControl]="formControl">
       <input type="checkbox" class="form-control" *ngIf="readonly" [formControl]="readonlyFormControl">
       <span>{{ trueValueLabel }}</span>
     </label>
-    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
   `,
   providers: [{
     provide: NG_VALUE_ACCESSOR,

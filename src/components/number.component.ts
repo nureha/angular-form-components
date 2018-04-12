@@ -71,11 +71,11 @@ function numberFormat(num, underPoint = -1): string {
   selector: 'afc-number',
   template: `
     <label *ngIf="label"><span *ngIf="required">*&nbsp;</span>{{ label }}</label>
+    <afc-validate-message [control]="formControl" [name]="label"><ng-content></ng-content></afc-validate-message>
     <input class="form-control"
       (blur)="onBlur()"
       type="number" [formControl]="innerFormControl">
     <input class="form-control" (focus)="onFocus()" [readonly]="readonly">
-    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
   `,
   providers: [{
     provide: NG_VALUE_ACCESSOR,

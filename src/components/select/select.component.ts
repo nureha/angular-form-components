@@ -10,11 +10,11 @@ import { AfcSelectBase } from './select-base.component';
   template: `
     <label *ngIf="label" [htmlFor]="id"><span [hidden]="!required">*&nbsp;</span>{{ label }}</label>
     <ng-container *ngIf="!readonly">
+      <afc-validate-message [control]="formControl" [name]="label"><ng-content></ng-content></afc-validate-message>
       <select [id]="id" class="form-control" [formControl]="innerFormControl" [required]="required">
         <option *ngIf="!required" [ngValue]="null"></option>
         <option *ngFor="let item of data" [ngValue]="item.forSelectValue" [innerHtml]="item.forSelectName"></option>
       </select>
-      <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
     </ng-container>
     <ng-container *ngIf="readonly">
       <span class="form-control" readonly [innerHtml]="selected?.forSelectName"></span>

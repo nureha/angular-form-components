@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AfcTextareaComponent } from './textarea.component';
 import { AfcValidateMessageComponent } from './validate-message.component';
+import { NopeErrorMessageFactoryService, ERROR_MESSAGE_FACTORY_SERVICE } from '../services';
 
 describe('AfcTextareaComponent', () => {
   let component: AfcTextareaComponent;
@@ -14,7 +15,14 @@ describe('AfcTextareaComponent', () => {
         AfcTextareaComponent,
         AfcValidateMessageComponent,
       ],
-      imports: [ReactiveFormsModule, FormsModule],
+      imports: [
+        ReactiveFormsModule,
+        FormsModule,
+      ],
+      providers: [{
+        provide: ERROR_MESSAGE_FACTORY_SERVICE,
+        useClass: NopeErrorMessageFactoryService,
+      }]
     })
     .compileComponents();
   }));

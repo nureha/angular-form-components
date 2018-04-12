@@ -56,9 +56,9 @@ AfcInputComponent.decorators = [
                 selector: 'afc-input',
                 template: `
     <label *ngIf="label"><span *ngIf="required">*&nbsp;</span>{{ label }}</label>
+    <afc-validate-message [control]="formControl" [name]="label"><ng-content></ng-content></afc-validate-message>
     <input class="form-control"
       [type]="type" [formControl]="formControl" [readonly]="readonly">
-    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
   `,
                 providers: [{
                         provide: NG_VALUE_ACCESSOR,
@@ -290,11 +290,11 @@ AfcNumberComponent.decorators = [
                 selector: 'afc-number',
                 template: `
     <label *ngIf="label"><span *ngIf="required">*&nbsp;</span>{{ label }}</label>
+    <afc-validate-message [control]="formControl" [name]="label"><ng-content></ng-content></afc-validate-message>
     <input class="form-control"
       (blur)="onBlur()"
       type="number" [formControl]="innerFormControl">
     <input class="form-control" (focus)="onFocus()" [readonly]="readonly">
-    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
   `,
                 providers: [{
                         provide: NG_VALUE_ACCESSOR,
@@ -539,6 +539,32 @@ SelectorServiceInjector.ctorParameters = () => [
     { type: Injector, },
     { type: undefined, decorators: [{ type: Inject, args: [MULTI_IMPORT_SERVICES_MAP,] },] },
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes} checked by tsc
+ */
+/**
+ * @record
+ */
+
+const ERROR_MESSAGE_FACTORY_SERVICE = new InjectionToken('ERROR_MESSAGE_FACTORY_SERVICE');
+class NopeErrorMessageFactoryService {
+    constructor() { }
+    /**
+     * @param {?} error
+     * @param {?} name
+     * @return {?}
+     */
+    create(error, name) {
+        return [];
+    }
+}
+NopeErrorMessageFactoryService.decorators = [
+    { type: Injectable },
+];
+/** @nocollapse */
+NopeErrorMessageFactoryService.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
@@ -998,6 +1024,7 @@ AfcCheckboxComponent.decorators = [
         </div>
       </div>
     </div>
+    <afc-validate-message [control]="formControl" [name]="label"><ng-content></ng-content></afc-validate-message>
     <label class="checkbox-inline hidden"></label>
     <label htmlFor="{{ id }}_{{ item.forSelectValue }}" *ngFor="let item of filteredData"
         class="checkbox-inline custom-checkbox nowrap margin-bottom">
@@ -1006,8 +1033,6 @@ AfcCheckboxComponent.decorators = [
       <span [ngClass]="{'selected': value.indexOf(item.forSelectValue) !== -1}"
         [style.width]="width" [innerHtml]="item.forSelectName"></span>
     </label>
-    <br>
-    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
   `,
                 styles: [`
     span.selected {
@@ -1066,13 +1091,12 @@ AfcRadioComponent.decorators = [
                 selector: 'afc-radio',
                 template: `
     <p *ngIf="!!label"><span [hidden]="!required">*&nbsp;</span>{{ label }}</p>
+    <afc-validate-message [control]="formControl" [name]="label"><ng-content></ng-content></afc-validate-message>
     <label htmlFor="{{ id }}_{{ item.forSelectValue }}" *ngFor="let item of data" class="radio-inline custom-radio nowrap">
       <input id="{{ id }}_{{ item.forSelectValue }}" type="radio" class="form-control" name="{{ id }}"
         [value]="item.forSelectValue" [formControl]="innerFormControl">
       <span [innerHtml]="item.forSelectName"></span>
     </label>
-    <br>
-    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
   `,
                 providers: [{
                         provide: NG_VALUE_ACCESSOR,
@@ -1135,11 +1159,11 @@ AfcSelectComponent.decorators = [
                 template: `
     <label *ngIf="label" [htmlFor]="id"><span [hidden]="!required">*&nbsp;</span>{{ label }}</label>
     <ng-container *ngIf="!readonly">
+      <afc-validate-message [control]="formControl" [name]="label"><ng-content></ng-content></afc-validate-message>
       <select [id]="id" class="form-control" [formControl]="innerFormControl" [required]="required">
         <option *ngIf="!required" [ngValue]="null"></option>
         <option *ngFor="let item of data" [ngValue]="item.forSelectValue" [innerHtml]="item.forSelectName"></option>
       </select>
-      <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
     </ng-container>
     <ng-container *ngIf="readonly">
       <span class="form-control" readonly [innerHtml]="selected?.forSelectName"></span>
@@ -1294,9 +1318,9 @@ AfcSelect2Component.decorators = [
                 template: `
     <label><span [hidden]="!required">*&nbsp;</span>{{ label }}</label>
     <ng-container *ngIf="!readonly">
+      <afc-validate-message [control]="formControl" [name]="label"><ng-content></ng-content></afc-validate-message>
       <div>
         <select #selector class="form-control"></select>
-        <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
       </div>
     </ng-container>
     <ng-container *ngIf="readonly">
@@ -1392,15 +1416,15 @@ class AfcSingleCheckboxComponent {
 }
 AfcSingleCheckboxComponent.decorators = [
     { type: Component, args: [{
-                selector: 'single-checkbox',
+                selector: 'afc-single-checkbox',
                 template: `
     <p *ngIf="!!label"><span *ngIf="required">*&nbsp;</span>{{ label }}</p>
+    <afc-validate-message [control]="formControl" [name]="label"><ng-content></ng-content></afc-validate-message>
     <label class="checkbox-inline custom-checkbox nowrap">
       <input type="checkbox" class="form-control" *ngIf="!readonly" [formControl]="formControl">
       <input type="checkbox" class="form-control" *ngIf="readonly" [formControl]="readonlyFormControl">
       <span>{{ trueValueLabel }}</span>
     </label>
-    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
   `,
                 providers: [{
                         provide: NG_VALUE_ACCESSOR,
@@ -1452,8 +1476,8 @@ AfcTextareaComponent.decorators = [
                 selector: 'afc-textarea',
                 template: `
     <label *ngIf="label"><span *ngIf="required">*&nbsp;</span>{{ label }}</label>
+    <afc-validate-message [control]="formControl" [name]="label"><ng-content></ng-content></afc-validate-message>
     <textarea [formControl]="formControl" class="form-control"></textarea>
-    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
   `,
                 providers: [{
                         provide: NG_VALUE_ACCESSOR,
@@ -1474,28 +1498,63 @@ AfcTextareaComponent.propDecorators = {
  * @suppress {checkTypes} checked by tsc
  */
 class AfcValidateMessageComponent {
-    constructor() { }
+    /**
+     * @param {?} messageFactoryService
+     */
+    constructor(messageFactoryService) {
+        this.messageFactoryService = messageFactoryService;
+        this.name = '';
+        this.subscription = new Subscription();
+        this.messages = [];
+    }
     /**
      * @return {?}
      */
-    ngOnInit() { }
+    ngOnInit() {
+        this.subscription.add(this.control.valueChanges.subscribe(v => {
+            if (this.control.errors) {
+                this.messages = this.messageFactoryService.create(this.control.errors, this.name);
+            }
+        }));
+        if (this.control.errors) {
+            this.messages = this.messageFactoryService.create(this.control.errors, this.name);
+        }
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
 }
 AfcValidateMessageComponent.decorators = [
     { type: Component, args: [{
-                selector: 'validate-message',
-                template: '<span [hidden]="!control.touched || control.valid"><ng-content></ng-content></span>',
+                selector: 'afc-validate-message',
+                template: `
+    <div>
+      <span class="validation-errors" *ngIf="control.touched && control.invalid">
+        <ng-content></ng-content>
+        <p *ngFor="let m of messages">{{ m }}</p>
+      </span>
+    </div>
+  `,
                 styles: [`
-    span {
+    div {
+      position: relative;
+    }
+  `, `
+    span.validation-errors {
       position: absolute;
       color: #ffffff;
-      top: -15px;
-      right: -10px;
+      bottom: 70%;
+      right: -20px;
       padding: 7px;
       background-color: #bd362f;
       border-radius: 7px;
+      z-index: 10000;
     }
   `, `
-    span:before {
+    span.validation-errors:before {
       content: "";
       position: absolute;
       top: 100%;
@@ -1503,14 +1562,23 @@ AfcValidateMessageComponent.decorators = [
       margin-left: -7px;
       border: 7px solid transparent;
       border-top: 7px solid #bd362f;
+      z-index: 10000;
+    }
+  `, `
+    p {
+      margin: 0;
+      padding: 0;
     }
   `]
             },] },
 ];
 /** @nocollapse */
-AfcValidateMessageComponent.ctorParameters = () => [];
+AfcValidateMessageComponent.ctorParameters = () => [
+    { type: undefined, decorators: [{ type: Inject, args: [ERROR_MESSAGE_FACTORY_SERVICE,] },] },
+];
 AfcValidateMessageComponent.propDecorators = {
     "control": [{ type: Input },],
+    "name": [{ type: Input },],
 };
 
 /**
@@ -1547,6 +1615,13 @@ AngularFormComponentsModule.decorators = [
                     FormsModule,
                     ReactiveFormsModule,
                 ],
+                providers: [
+                    NopeErrorMessageFactoryService,
+                    {
+                        provide: ERROR_MESSAGE_FACTORY_SERVICE,
+                        useExisting: NopeErrorMessageFactoryService,
+                    }
+                ],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS]
             },] },
@@ -1565,5 +1640,5 @@ AngularFormComponentsModule.decorators = [
  * Generated bundle index. Do not edit.
  */
 
-export { AngularFormComponentsModule, AfcInputComponent, AfcNumberComponent, AfcCheckboxComponent, AfcRadioComponent, AfcSelectComponent, AfcSelect2Component, AfcSingleCheckboxComponent, AfcTextareaComponent, AfcValidateMessageComponent, FilterService, Selectable, MULTI_IMPORT_SERVICES_MAP, SelectorServiceInjector, AfcSelectBase as ɵa };
+export { AngularFormComponentsModule, AfcInputComponent, AfcNumberComponent, AfcCheckboxComponent, AfcRadioComponent, AfcSelectComponent, AfcSelect2Component, AfcSingleCheckboxComponent, AfcTextareaComponent, AfcValidateMessageComponent, FilterService, Selectable, MULTI_IMPORT_SERVICES_MAP, SelectorServiceInjector, ERROR_MESSAGE_FACTORY_SERVICE, NopeErrorMessageFactoryService, AfcSelectBase as ɵa };
 //# sourceMappingURL=angular-form-components.js.map

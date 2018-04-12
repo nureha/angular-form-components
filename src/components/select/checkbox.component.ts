@@ -19,6 +19,7 @@ import { AfcSelectBase } from './select-base.component';
         </div>
       </div>
     </div>
+    <afc-validate-message [control]="formControl" [name]="label"><ng-content></ng-content></afc-validate-message>
     <label class="checkbox-inline hidden"></label>
     <label htmlFor="{{ id }}_{{ item.forSelectValue }}" *ngFor="let item of filteredData"
         class="checkbox-inline custom-checkbox nowrap margin-bottom">
@@ -27,8 +28,6 @@ import { AfcSelectBase } from './select-base.component';
       <span [ngClass]="{'selected': value.indexOf(item.forSelectValue) !== -1}"
         [style.width]="width" [innerHtml]="item.forSelectName"></span>
     </label>
-    <br>
-    <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
   `,
   styles: [`
     span.selected {

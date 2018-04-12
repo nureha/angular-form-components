@@ -1,7 +1,13 @@
-import { OnInit } from '@angular/core';
+import { OnInit, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
-export declare class AfcValidateMessageComponent implements OnInit {
+import { ErrorMessageFactoryService } from '../services';
+export declare class AfcValidateMessageComponent implements OnInit, OnDestroy {
+    private messageFactoryService;
     control: FormControl;
-    constructor();
+    name: string;
+    private subscription;
+    messages: string[];
+    constructor(messageFactoryService: ErrorMessageFactoryService);
     ngOnInit(): void;
+    ngOnDestroy(): void;
 }

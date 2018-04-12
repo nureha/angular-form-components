@@ -12,7 +12,7 @@ import { share } from 'rxjs/operators';
 import { AfcSelectComponent } from './select.component';
 import { AfcCheckboxComponent } from './checkbox.component';
 import { AfcValidateMessageComponent } from '../validate-message.component';
-import { SelectorServiceInjector, SelectorService, Selectable, MULTI_IMPORT_SERVICES_MAP } from '../../services';
+import { SelectorServiceInjector, SelectorService, Selectable, MULTI_IMPORT_SERVICES_MAP, ERROR_MESSAGE_FACTORY_SERVICE, NopeErrorMessageFactoryService } from '../../services';
 
 class SelectableConstruct extends Selectable {
   name: string;
@@ -119,10 +119,16 @@ describe('AfcSelectComponent', () => {
         AfcCheckboxComponent,
         AfcValidateMessageComponent,
       ],
-      imports: [ReactiveFormsModule, FormsModule],
+      imports: [
+        ReactiveFormsModule,
+        FormsModule,
+      ],
       providers: [
         SelectorServiceInjector,
       {
+        provide: ERROR_MESSAGE_FACTORY_SERVICE,
+        useClass: NopeErrorMessageFactoryService,
+      }, {
         provide: MULTI_IMPORT_SERVICES_MAP,
         useValue: {
           map: _map

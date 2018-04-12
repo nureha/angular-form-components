@@ -13,9 +13,9 @@ declare const jQuery: any;
   template: `
     <label><span [hidden]="!required">*&nbsp;</span>{{ label }}</label>
     <ng-container *ngIf="!readonly">
+      <afc-validate-message [control]="formControl" [name]="label"><ng-content></ng-content></afc-validate-message>
       <div>
         <select #selector class="form-control"></select>
-        <validate-message [control]="formControl"><ng-content></ng-content></validate-message>
       </div>
     </ng-container>
     <ng-container *ngIf="readonly">

@@ -4,6 +4,7 @@ import { FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AfcSelect2Component } from './select2.component';
 import { AfcValidateMessageComponent } from '../validate-message.component';
 import { MULTI_IMPORT_SERVICES_MAP } from '../../services';
+import { NopeErrorMessageFactoryService, ERROR_MESSAGE_FACTORY_SERVICE } from '../../services';
 
 describe('AfcSelect2Component', () => {
   let component: AfcSelect2Component;
@@ -15,8 +16,15 @@ describe('AfcSelect2Component', () => {
         AfcSelect2Component,
         AfcValidateMessageComponent,
       ],
-      imports: [ReactiveFormsModule, FormsModule],
-      providers: [{
+      imports: [
+        ReactiveFormsModule,
+        FormsModule,
+      ],
+      providers: [
+      {
+        provide: ERROR_MESSAGE_FACTORY_SERVICE,
+        useClass: NopeErrorMessageFactoryService,
+      }, {
         provide: MULTI_IMPORT_SERVICES_MAP,
         useValue: {
           map: new Map()

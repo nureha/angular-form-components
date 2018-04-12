@@ -2,6 +2,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormControl } from '@angular/forms';
 import { AfcValidateMessageComponent } from './validate-message.component';
+import { NopeErrorMessageFactoryService, ERROR_MESSAGE_FACTORY_SERVICE } from '../services';
 
 describe('AfcValidateMessageComponent', () => {
   let component: AfcValidateMessageComponent;
@@ -10,6 +11,10 @@ describe('AfcValidateMessageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AfcValidateMessageComponent],
+      providers: [{
+        provide: ERROR_MESSAGE_FACTORY_SERVICE,
+        useClass: NopeErrorMessageFactoryService,
+      }],
     })
     .compileComponents();
   }));

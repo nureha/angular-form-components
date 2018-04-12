@@ -83,7 +83,7 @@ var AfcInputComponent = /** @class */ (function () {
 AfcInputComponent.decorators = [
     { type: core.Component, args: [{
                 selector: 'afc-input',
-                template: "\n    <label *ngIf=\"label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</label>\n    <input class=\"form-control\"\n      [type]=\"type\" [formControl]=\"formControl\" [readonly]=\"readonly\">\n    <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n  ",
+                template: "\n    <label *ngIf=\"label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</label>\n    <afc-validate-message [control]=\"formControl\" [name]=\"label\"><ng-content></ng-content></afc-validate-message>\n    <input class=\"form-control\"\n      [type]=\"type\" [formControl]=\"formControl\" [readonly]=\"readonly\">\n  ",
                 providers: [{
                         provide: forms.NG_VALUE_ACCESSOR,
                         useExisting: core.forwardRef(function () { return AfcInputComponent; }),
@@ -257,7 +257,7 @@ var AfcNumberComponent = /** @class */ (function () {
 AfcNumberComponent.decorators = [
     { type: core.Component, args: [{
                 selector: 'afc-number',
-                template: "\n    <label *ngIf=\"label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</label>\n    <input class=\"form-control\"\n      (blur)=\"onBlur()\"\n      type=\"number\" [formControl]=\"innerFormControl\">\n    <input class=\"form-control\" (focus)=\"onFocus()\" [readonly]=\"readonly\">\n    <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n  ",
+                template: "\n    <label *ngIf=\"label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</label>\n    <afc-validate-message [control]=\"formControl\" [name]=\"label\"><ng-content></ng-content></afc-validate-message>\n    <input class=\"form-control\"\n      (blur)=\"onBlur()\"\n      type=\"number\" [formControl]=\"innerFormControl\">\n    <input class=\"form-control\" (focus)=\"onFocus()\" [readonly]=\"readonly\">\n  ",
                 providers: [{
                         provide: forms.NG_VALUE_ACCESSOR,
                         useExisting: core.forwardRef(function () { return AfcNumberComponent; }),
@@ -419,6 +419,19 @@ SelectorServiceInjector.ctorParameters = function () { return [
     { type: core.Injector, },
     { type: undefined, decorators: [{ type: core.Inject, args: [MULTI_IMPORT_SERVICES_MAP,] },] },
 ]; };
+var ERROR_MESSAGE_FACTORY_SERVICE = new core.InjectionToken('ERROR_MESSAGE_FACTORY_SERVICE');
+var NopeErrorMessageFactoryService = /** @class */ (function () {
+    function NopeErrorMessageFactoryService() {
+    }
+    NopeErrorMessageFactoryService.prototype.create = function (error, name) {
+        return [];
+    };
+    return NopeErrorMessageFactoryService;
+}());
+NopeErrorMessageFactoryService.decorators = [
+    { type: core.Injectable },
+];
+NopeErrorMessageFactoryService.ctorParameters = function () { return []; };
 var SelectableConstruct = /** @class */ (function (_super) {
     __extends(SelectableConstruct, _super);
     function SelectableConstruct(data) {
@@ -780,7 +793,7 @@ var AfcCheckboxComponent = /** @class */ (function (_super) {
 AfcCheckboxComponent.decorators = [
     { type: core.Component, args: [{
                 selector: 'afc-checkbox',
-                template: "\n    <p>{{ label }}</p>\n    <div *ngIf=\"!!filter\">\n      <div class=\"form-group col-md-12\">\n        <div class=\"col-md-2\">\n          <p class=\"fit\">\u8868\u793A\u4E2D\u306E\u9078\u629E\u80A2\u3059\u3079\u3066\u3092</p>\n          <button type=\"button\" class=\"btn btn-info btn-sm\" (click)=\"allCheck()\">\u9078\u629E</button>\n          <button type=\"button\" class=\"btn btn-warning btn-sm\" (click)=\"allClear()\">\u30AF\u30EA\u30A2</button>\n        </div>\n      </div>\n    </div>\n    <label class=\"checkbox-inline hidden\"></label>\n    <label htmlFor=\"{{ id }}_{{ item.forSelectValue }}\" *ngFor=\"let item of filteredData\"\n        class=\"checkbox-inline custom-checkbox nowrap margin-bottom\">\n      <input id=\"{{ id }}_{{ item.forSelectValue }}\" type=\"checkbox\" class=\"form-control\"\n        (change)=\"onChange($event, item.forSelectValue)\" [checked]=\"value.indexOf(item.forSelectValue) !== -1\">\n      <span [ngClass]=\"{'selected': value.indexOf(item.forSelectValue) !== -1}\"\n        [style.width]=\"width\" [innerHtml]=\"item.forSelectName\"></span>\n    </label>\n    <br>\n    <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n  ",
+                template: "\n    <p>{{ label }}</p>\n    <div *ngIf=\"!!filter\">\n      <div class=\"form-group col-md-12\">\n        <div class=\"col-md-2\">\n          <p class=\"fit\">\u8868\u793A\u4E2D\u306E\u9078\u629E\u80A2\u3059\u3079\u3066\u3092</p>\n          <button type=\"button\" class=\"btn btn-info btn-sm\" (click)=\"allCheck()\">\u9078\u629E</button>\n          <button type=\"button\" class=\"btn btn-warning btn-sm\" (click)=\"allClear()\">\u30AF\u30EA\u30A2</button>\n        </div>\n      </div>\n    </div>\n    <afc-validate-message [control]=\"formControl\" [name]=\"label\"><ng-content></ng-content></afc-validate-message>\n    <label class=\"checkbox-inline hidden\"></label>\n    <label htmlFor=\"{{ id }}_{{ item.forSelectValue }}\" *ngFor=\"let item of filteredData\"\n        class=\"checkbox-inline custom-checkbox nowrap margin-bottom\">\n      <input id=\"{{ id }}_{{ item.forSelectValue }}\" type=\"checkbox\" class=\"form-control\"\n        (change)=\"onChange($event, item.forSelectValue)\" [checked]=\"value.indexOf(item.forSelectValue) !== -1\">\n      <span [ngClass]=\"{'selected': value.indexOf(item.forSelectValue) !== -1}\"\n        [style.width]=\"width\" [innerHtml]=\"item.forSelectName\"></span>\n    </label>\n  ",
                 styles: ["\n    span.selected {\n      text-decoration: underline;\n      text-decoration-style: double;\n    }\n  ", "\n    label.margin-bottom {\n      margin-bottom: 20px;\n    }\n  ", "\n    p.fit {\n      margin-bottom: 0;\n    }\n  "],
                 providers: [{
                         provide: forms.NG_VALUE_ACCESSOR,
@@ -817,7 +830,7 @@ var AfcRadioComponent = /** @class */ (function (_super) {
 AfcRadioComponent.decorators = [
     { type: core.Component, args: [{
                 selector: 'afc-radio',
-                template: "\n    <p *ngIf=\"!!label\"><span [hidden]=\"!required\">*&nbsp;</span>{{ label }}</p>\n    <label htmlFor=\"{{ id }}_{{ item.forSelectValue }}\" *ngFor=\"let item of data\" class=\"radio-inline custom-radio nowrap\">\n      <input id=\"{{ id }}_{{ item.forSelectValue }}\" type=\"radio\" class=\"form-control\" name=\"{{ id }}\"\n        [value]=\"item.forSelectValue\" [formControl]=\"innerFormControl\">\n      <span [innerHtml]=\"item.forSelectName\"></span>\n    </label>\n    <br>\n    <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n  ",
+                template: "\n    <p *ngIf=\"!!label\"><span [hidden]=\"!required\">*&nbsp;</span>{{ label }}</p>\n    <afc-validate-message [control]=\"formControl\" [name]=\"label\"><ng-content></ng-content></afc-validate-message>\n    <label htmlFor=\"{{ id }}_{{ item.forSelectValue }}\" *ngFor=\"let item of data\" class=\"radio-inline custom-radio nowrap\">\n      <input id=\"{{ id }}_{{ item.forSelectValue }}\" type=\"radio\" class=\"form-control\" name=\"{{ id }}\"\n        [value]=\"item.forSelectValue\" [formControl]=\"innerFormControl\">\n      <span [innerHtml]=\"item.forSelectName\"></span>\n    </label>\n  ",
                 providers: [{
                         provide: forms.NG_VALUE_ACCESSOR,
                         useExisting: core.forwardRef(function () { return AfcRadioComponent; }),
@@ -867,7 +880,7 @@ var AfcSelectComponent = /** @class */ (function (_super) {
 AfcSelectComponent.decorators = [
     { type: core.Component, args: [{
                 selector: 'afc-select',
-                template: "\n    <label *ngIf=\"label\" [htmlFor]=\"id\"><span [hidden]=\"!required\">*&nbsp;</span>{{ label }}</label>\n    <ng-container *ngIf=\"!readonly\">\n      <select [id]=\"id\" class=\"form-control\" [formControl]=\"innerFormControl\" [required]=\"required\">\n        <option *ngIf=\"!required\" [ngValue]=\"null\"></option>\n        <option *ngFor=\"let item of data\" [ngValue]=\"item.forSelectValue\" [innerHtml]=\"item.forSelectName\"></option>\n      </select>\n      <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n    </ng-container>\n    <ng-container *ngIf=\"readonly\">\n      <span class=\"form-control\" readonly [innerHtml]=\"selected?.forSelectName\"></span>\n    </ng-container>\n  ",
+                template: "\n    <label *ngIf=\"label\" [htmlFor]=\"id\"><span [hidden]=\"!required\">*&nbsp;</span>{{ label }}</label>\n    <ng-container *ngIf=\"!readonly\">\n      <afc-validate-message [control]=\"formControl\" [name]=\"label\"><ng-content></ng-content></afc-validate-message>\n      <select [id]=\"id\" class=\"form-control\" [formControl]=\"innerFormControl\" [required]=\"required\">\n        <option *ngIf=\"!required\" [ngValue]=\"null\"></option>\n        <option *ngFor=\"let item of data\" [ngValue]=\"item.forSelectValue\" [innerHtml]=\"item.forSelectName\"></option>\n      </select>\n    </ng-container>\n    <ng-container *ngIf=\"readonly\">\n      <span class=\"form-control\" readonly [innerHtml]=\"selected?.forSelectName\"></span>\n    </ng-container>\n  ",
                 styles: ["\n    span.selected {\n      text-decoration: underline;\n      text-decoration-style: double;\n    }\n  "],
                 providers: [{
                         provide: forms.NG_VALUE_ACCESSOR,
@@ -987,7 +1000,7 @@ var AfcSelect2Component = /** @class */ (function (_super) {
 AfcSelect2Component.decorators = [
     { type: core.Component, args: [{
                 selector: 'afc-select2',
-                template: "\n    <label><span [hidden]=\"!required\">*&nbsp;</span>{{ label }}</label>\n    <ng-container *ngIf=\"!readonly\">\n      <div>\n        <select #selector class=\"form-control\"></select>\n        <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n      </div>\n    </ng-container>\n    <ng-container *ngIf=\"readonly\">\n      <span class=\"form-control\" readonly [innerHtml]=\"selected?.forSelectName\"></span>\n    </ng-container>\n  ",
+                template: "\n    <label><span [hidden]=\"!required\">*&nbsp;</span>{{ label }}</label>\n    <ng-container *ngIf=\"!readonly\">\n      <afc-validate-message [control]=\"formControl\" [name]=\"label\"><ng-content></ng-content></afc-validate-message>\n      <div>\n        <select #selector class=\"form-control\"></select>\n      </div>\n    </ng-container>\n    <ng-container *ngIf=\"readonly\">\n      <span class=\"form-control\" readonly [innerHtml]=\"selected?.forSelectName\"></span>\n    </ng-container>\n  ",
                 providers: [{
                         provide: forms.NG_VALUE_ACCESSOR,
                         useExisting: core.forwardRef(function () { return AfcSelect2Component; }),
@@ -1052,8 +1065,8 @@ var AfcSingleCheckboxComponent = /** @class */ (function () {
 }());
 AfcSingleCheckboxComponent.decorators = [
     { type: core.Component, args: [{
-                selector: 'single-checkbox',
-                template: "\n    <p *ngIf=\"!!label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</p>\n    <label class=\"checkbox-inline custom-checkbox nowrap\">\n      <input type=\"checkbox\" class=\"form-control\" *ngIf=\"!readonly\" [formControl]=\"formControl\">\n      <input type=\"checkbox\" class=\"form-control\" *ngIf=\"readonly\" [formControl]=\"readonlyFormControl\">\n      <span>{{ trueValueLabel }}</span>\n    </label>\n    <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n  ",
+                selector: 'afc-single-checkbox',
+                template: "\n    <p *ngIf=\"!!label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</p>\n    <afc-validate-message [control]=\"formControl\" [name]=\"label\"><ng-content></ng-content></afc-validate-message>\n    <label class=\"checkbox-inline custom-checkbox nowrap\">\n      <input type=\"checkbox\" class=\"form-control\" *ngIf=\"!readonly\" [formControl]=\"formControl\">\n      <input type=\"checkbox\" class=\"form-control\" *ngIf=\"readonly\" [formControl]=\"readonlyFormControl\">\n      <span>{{ trueValueLabel }}</span>\n    </label>\n  ",
                 providers: [{
                         provide: forms.NG_VALUE_ACCESSOR,
                         useExisting: core.forwardRef(function () { return AfcSingleCheckboxComponent; }),
@@ -1083,7 +1096,7 @@ var AfcTextareaComponent = /** @class */ (function () {
 AfcTextareaComponent.decorators = [
     { type: core.Component, args: [{
                 selector: 'afc-textarea',
-                template: "\n    <label *ngIf=\"label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</label>\n    <textarea [formControl]=\"formControl\" class=\"form-control\"></textarea>\n    <validate-message [control]=\"formControl\"><ng-content></ng-content></validate-message>\n  ",
+                template: "\n    <label *ngIf=\"label\"><span *ngIf=\"required\">*&nbsp;</span>{{ label }}</label>\n    <afc-validate-message [control]=\"formControl\" [name]=\"label\"><ng-content></ng-content></afc-validate-message>\n    <textarea [formControl]=\"formControl\" class=\"form-control\"></textarea>\n  ",
                 providers: [{
                         provide: forms.NG_VALUE_ACCESSOR,
                         useExisting: core.forwardRef(function () { return AfcTextareaComponent; }),
@@ -1097,21 +1110,41 @@ AfcTextareaComponent.propDecorators = {
     "label": [{ type: core.Input },],
 };
 var AfcValidateMessageComponent = /** @class */ (function () {
-    function AfcValidateMessageComponent() {
+    function AfcValidateMessageComponent(messageFactoryService) {
+        this.messageFactoryService = messageFactoryService;
+        this.name = '';
+        this.subscription = new Subscription.Subscription();
+        this.messages = [];
     }
-    AfcValidateMessageComponent.prototype.ngOnInit = function () { };
+    AfcValidateMessageComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.subscription.add(this.control.valueChanges.subscribe(function (v) {
+            if (_this.control.errors) {
+                _this.messages = _this.messageFactoryService.create(_this.control.errors, _this.name);
+            }
+        }));
+        if (this.control.errors) {
+            this.messages = this.messageFactoryService.create(this.control.errors, this.name);
+        }
+    };
+    AfcValidateMessageComponent.prototype.ngOnDestroy = function () {
+        this.subscription.unsubscribe();
+    };
     return AfcValidateMessageComponent;
 }());
 AfcValidateMessageComponent.decorators = [
     { type: core.Component, args: [{
-                selector: 'validate-message',
-                template: '<span [hidden]="!control.touched || control.valid"><ng-content></ng-content></span>',
-                styles: ["\n    span {\n      position: absolute;\n      color: #ffffff;\n      top: -15px;\n      right: -10px;\n      padding: 7px;\n      background-color: #bd362f;\n      border-radius: 7px;\n    }\n  ", "\n    span:before {\n      content: \"\";\n      position: absolute;\n      top: 100%;\n      left: 50%;\n      margin-left: -7px;\n      border: 7px solid transparent;\n      border-top: 7px solid #bd362f;\n    }\n  "]
+                selector: 'afc-validate-message',
+                template: "\n    <div>\n      <span class=\"validation-errors\" *ngIf=\"control.touched && control.invalid\">\n        <ng-content></ng-content>\n        <p *ngFor=\"let m of messages\">{{ m }}</p>\n      </span>\n    </div>\n  ",
+                styles: ["\n    div {\n      position: relative;\n    }\n  ", "\n    span.validation-errors {\n      position: absolute;\n      color: #ffffff;\n      bottom: 70%;\n      right: -20px;\n      padding: 7px;\n      background-color: #bd362f;\n      border-radius: 7px;\n      z-index: 10000;\n    }\n  ", "\n    span.validation-errors:before {\n      content: \"\";\n      position: absolute;\n      top: 100%;\n      left: 50%;\n      margin-left: -7px;\n      border: 7px solid transparent;\n      border-top: 7px solid #bd362f;\n      z-index: 10000;\n    }\n  ", "\n    p {\n      margin: 0;\n      padding: 0;\n    }\n  "]
             },] },
 ];
-AfcValidateMessageComponent.ctorParameters = function () { return []; };
+AfcValidateMessageComponent.ctorParameters = function () { return [
+    { type: undefined, decorators: [{ type: core.Inject, args: [ERROR_MESSAGE_FACTORY_SERVICE,] },] },
+]; };
 AfcValidateMessageComponent.propDecorators = {
     "control": [{ type: core.Input },],
+    "name": [{ type: core.Input },],
 };
 var COMPONENTS = [
     AfcInputComponent,
@@ -1136,6 +1169,13 @@ AngularFormComponentsModule.decorators = [
                     forms.FormsModule,
                     forms.ReactiveFormsModule,
                 ],
+                providers: [
+                    NopeErrorMessageFactoryService,
+                    {
+                        provide: ERROR_MESSAGE_FACTORY_SERVICE,
+                        useExisting: NopeErrorMessageFactoryService,
+                    }
+                ],
                 declarations: __spread(COMPONENTS),
                 exports: __spread(COMPONENTS)
             },] },
@@ -1155,6 +1195,8 @@ exports.FilterService = FilterService;
 exports.Selectable = Selectable;
 exports.MULTI_IMPORT_SERVICES_MAP = MULTI_IMPORT_SERVICES_MAP;
 exports.SelectorServiceInjector = SelectorServiceInjector;
+exports.ERROR_MESSAGE_FACTORY_SERVICE = ERROR_MESSAGE_FACTORY_SERVICE;
+exports.NopeErrorMessageFactoryService = NopeErrorMessageFactoryService;
 exports.ɵa = AfcSelectBase;
 
 Object.defineProperty(exports, '__esModule', { value: true });

@@ -1,21 +1,35 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Inject, InjectionToken } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ErrorMessageFactoryService, ERROR_MESSAGE_FACTORY_SERVICE } from '../services';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-  selector: 'validate-message',
-  template: '<span [hidden]="!control.touched || control.valid"><ng-content></ng-content></span>',
+  selector: 'afc-validate-message',
+  template: `
+    <div>
+      <span class="validation-errors" *ngIf="control.touched && control.invalid">
+        <ng-content></ng-content>
+        <p *ngFor="let m of messages">{{ m }}</p>
+      </span>
+    </div>
+  `,
   styles: [`
-    span {
+    div {
+      position: relative;
+    }
+  `, `
+    span.validation-errors {
       position: absolute;
       color: #ffffff;
-      top: -15px;
-      right: -10px;
+      bottom: 70%;
+      right: -20px;
       padding: 7px;
       background-color: #bd362f;
       border-radius: 7px;
+      z-index: 10000;
     }
   `, `
-    span:before {
+    span.validation-errors:before {
       content: "";
       position: absolute;
       top: 100%;
@@ -23,15 +37,42 @@ import { FormControl } from '@angular/forms';
       margin-left: -7px;
       border: 7px solid transparent;
       border-top: 7px solid #bd362f;
+      z-index: 10000;
+    }
+  `, `
+    p {
+      margin: 0;
+      padding: 0;
     }
   `]
 })
-export class AfcValidateMessageComponent implements OnInit {
+export class AfcValidateMessageComponent implements OnInit, OnDestroy {
 
   @Input() control: FormControl;
+  @Input() name = '';
+  private subscription = new Subscription();
 
-  constructor() {}
+  public messages: string[] = [];
 
-  ngOnInit() {}
+  constructor(
+    @Inject(ERROR_MESSAGE_FACTORY_SERVICE) private messageFactoryService: ErrorMessageFactoryService,
+  ) {}
+
+  ngOnInit() {
+    this.subscription.add(
+      this.control.valueChanges.subscribe(v => {
+        if (this.control.errors) {
+          this.messages = this.messageFactoryService.create(this.control.errors, this.name);
+        }
+      })
+    );
+    if (this.control.errors) {
+      this.messages = this.messageFactoryService.create(this.control.errors, this.name);
+    }
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
 }

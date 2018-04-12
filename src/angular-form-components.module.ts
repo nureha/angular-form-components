@@ -7,6 +7,7 @@ import { AfcCheckboxComponent, AfcRadioComponent, AfcSelectComponent, AfcSelect2
 import { AfcSingleCheckboxComponent } from './components/single-checkbox.component';
 import { AfcTextareaComponent } from './components/textarea.component';
 import { AfcValidateMessageComponent } from './components/validate-message.component';
+import { NopeErrorMessageFactoryService, ERROR_MESSAGE_FACTORY_SERVICE } from './services';
 
 const COMPONENTS = [
   AfcInputComponent,
@@ -26,6 +27,12 @@ const COMPONENTS = [
     FormsModule,
     ReactiveFormsModule,
   ],
+  providers: [
+    NopeErrorMessageFactoryService,
+  {
+    provide: ERROR_MESSAGE_FACTORY_SERVICE,
+    useExisting: NopeErrorMessageFactoryService,
+  }],
   declarations: [...COMPONENTS],
   exports:[...COMPONENTS]
 })
