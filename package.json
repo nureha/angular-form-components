@@ -1,7 +1,7 @@
 {
   "name": "angular-form-components",
   "private": true,
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "",
   "main": "./dist/bundles/angular-form-components.umd.js",
   "module": "./dist/esm5/angular-form-components.js",
