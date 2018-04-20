@@ -1,3 +1,1 @@
-export * from './components';
-export * from './services';
-export { AngularFormComponentsModule } from './angular-form-components.module';
+export * from './public_api';

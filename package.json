@@ -4,7 +4,7 @@
   "version": "1.0.0-beta.1",
   "description": "",
   "main": "./dist/bundles/angular-form-components.umd.js",
-  "module": "./dist/esm2015/angular-form-components.js",
+  "module": "./dist/esm5/angular-form-components.js",
   "esm5": "./dist/esm5/angular-form-components.js",
   "esm2015": "./dist/esm2015/angular-form-components.js",
   "typings": "./dist/index.d.ts",
